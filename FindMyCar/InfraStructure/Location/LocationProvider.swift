@@ -46,9 +46,7 @@ extension DefaultLocationProvider: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locationCoordinate: CLLocationCoordinate2D = manager.location?.coordinate else {
-            return
-        }
+        guard let locationCoordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
 
         lastLocation = Location(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
     }
