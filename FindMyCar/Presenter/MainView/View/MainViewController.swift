@@ -9,63 +9,66 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    private let defaultImageView: UIImageView = {
-        let image: UIImage? = UIImage(systemName: "car")
+    let viewModel: MainViewModel = MainViewModel()
+
+    private lazy var defaultImageView: UIImageView = {
+        let image: UIImage? = UIImage(systemName: viewModel.defaultImage)
         let imageView: UIImageView = UIImageView(image: image)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = Default.cornerRadius
         imageView.clipsToBounds =  true
 
         return imageView
     }()
 
-    private let positioningButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold)
-        let buttonImage: UIImage? = UIImage(systemName: "flag", withConfiguration: imageConfig)
+    private lazy var positioningButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let buttonImage: UIImage? = UIImage(systemName: viewModel.positioningButtonImage,
+                                            withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Default.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private let cameraButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold)
-        let buttonImage: UIImage? = UIImage(systemName: "camera", withConfiguration: imageConfig)
+    private lazy var cameraButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let buttonImage: UIImage? = UIImage(systemName: viewModel.cameraButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Default.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private let pencilButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold)
-        let buttonImage: UIImage? = UIImage(systemName: "pencil", withConfiguration: imageConfig)
+    private lazy var pencilButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let buttonImage: UIImage? = UIImage(systemName: viewModel.pencilButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Default.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private let refreshButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: 50, weight: .bold)
-        let buttonImage: UIImage? = UIImage(systemName: "arrow.clockwise", withConfiguration: imageConfig)
+    private lazy var refreshButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let buttonImage: UIImage? = UIImage(systemName: viewModel.refreshButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = Default.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -74,7 +77,7 @@ class MainViewController: UIViewController {
     private let firstButtonsStackView: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 20
+        stackView.spacing = Default.stackSpacing
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -84,7 +87,7 @@ class MainViewController: UIViewController {
     private let secondButtonsStackView: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 20
+        stackView.spacing = Default.stackSpacing
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -94,7 +97,7 @@ class MainViewController: UIViewController {
     private let totalStackView: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = Default.stackSpacing
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -142,5 +145,15 @@ class MainViewController: UIViewController {
             defaultImageView.heightAnchor.constraint(equalTo: defaultImageView.widthAnchor, multiplier: 1.2),
             defaultImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
+    }
+}
+
+extension MainViewController {
+
+    enum Default {
+
+        static let cornerRadius: CGFloat = 10
+        static let stackSpacing: CGFloat = 20
+        static let buttonImagePointSize: CGFloat = 50
     }
 }
