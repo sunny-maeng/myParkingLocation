@@ -9,12 +9,13 @@ import UIKit
 
 final class WritingView: UIView {
 
-    private let clearButton: UIButton = {
+    private lazy var clearButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(.red, for: .normal)
         button.setTitle("Clear", for: .normal)     // 버튼 지우개 모양으로 바꾸기
         button.titleLabel?.font = .preferredFont(forTextStyle: .title2)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addAction(self.touchedUpClearButton(), for: .touchUpInside)
 
         return button
     }()
@@ -39,6 +40,16 @@ final class WritingView: UIView {
             .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
 
         drawingImageView.image = image
+    }
+}
+
+// clearAction
+extension WritingView {
+
+    private func touchedUpClearButton() -> UIAction {
+        return UIAction { _ in
+            self.drawingImageView.image = nil
+        }
     }
 }
 
@@ -67,7 +78,7 @@ extension WritingView {
 
     private func configureLayout() {
         NSLayoutConstraint.activate([
-            clearButton.topAnchor.constraint(equalTo: self.topAnchor),
+            clearButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.stackSpacing),
             clearButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.stackSpacing),
 
             drawingImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
