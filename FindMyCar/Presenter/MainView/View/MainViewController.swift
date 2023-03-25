@@ -47,7 +47,7 @@ class MainViewController: UIViewController {
         return button
     }()
 
-    private lazy var writeButton: UIButton = {
+    private lazy var drawingButton: UIButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.pencilButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
         button.layer.cornerRadius = Constant.cornerRadius
-        button.addAction(touchedUpWriteButton(), for: .touchUpInside)
+        button.addAction(touchedUpDrawingButton(), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -135,17 +135,17 @@ extension MainViewController {
     }
 }
 
-// MARK: - WriteButtonAction
+// MARK: - drawingButtonAction
 extension MainViewController {
 
-    private func touchedUpWriteButton() -> UIAction {
+    private func touchedUpDrawingButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
             self.removeAllSubViewsOfMainView()
 
-            let writingView = WritingView(defaultImage: self.viewModel.writingViewDefaultImage)
-            self.addToMainView(subView: writingView)
+            let drawingView = DrawingView(defaultImage: self.viewModel.writingViewDefaultImage)
+            self.addToMainView(subView: drawingView)
         }
     }
 }
@@ -160,7 +160,7 @@ extension MainViewController {
     }
 
     private func configureHierarchy() {
-        [positioningButton, cameraButton, writeButton].forEach { button in
+        [positioningButton, cameraButton, drawingButton].forEach { button in
             receiveButtonsStackView.addArrangedSubview(button)
         }
 
@@ -172,7 +172,7 @@ extension MainViewController {
     }
 
     private func configureLayout() {
-        [positioningButton, cameraButton, writeButton].forEach { button in
+        [positioningButton, cameraButton, drawingButton].forEach { button in
             button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
         }
 
