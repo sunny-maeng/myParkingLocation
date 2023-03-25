@@ -21,7 +21,7 @@ final class DefaultView: UIView {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.systemGray3.cgColor
-        imageView.layer.borderWidth = 3
+        imageView.layer.borderWidth = Constant.borderWidth
         imageView.layer.cornerRadius = Constant.cornerRadius
         imageView.translatesAutoresizingMaskIntoConstraints = false
 

@@ -15,4 +15,5 @@ final class MainViewModel {
     let cameraButtonImage: String = "camera"
     let pencilButtonImage: String = "pencil"
     let refreshButtonImage: String = "arrow.clockwise"
+    let writingViewDefaultImage: String = "hand.draw"
 }

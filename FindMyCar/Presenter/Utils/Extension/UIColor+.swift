@@ -9,5 +9,5 @@ import UIKit
 
 extension UIColor {
 
-    class var mainBlue: UIColor? { return UIColor(named: "mainBlue") }
+    class var mainBlue: UIColor { return UIColor(named: "mainBlue") ?? UIColor.systemBlue }
 }

@@ -55,6 +55,7 @@ class MainViewController: UIViewController {
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
         button.layer.cornerRadius = Constant.cornerRadius
+        button.addAction(touchedUpWriteButton(), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -113,17 +114,38 @@ extension MainViewController {
             subView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
         ])
     }
+
+    private func removeAllSubViewsOfMainView() {
+        mainView.subviews.forEach { $0.removeFromSuperview() }
+    }
 }
 
-// MARK: - resetButton
+// MARK: - resetButtonAction
 extension MainViewController {
 
     private func touchedUpRefreshButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
+            self.removeAllSubViewsOfMainView()
+
             let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
             self.addToMainView(subView: defaultView)
+        }
+    }
+}
+
+// MARK: - WriteButtonAction
+extension MainViewController {
+
+    private func touchedUpWriteButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            self.removeAllSubViewsOfMainView()
+
+            let writingView = WritingView(defaultImage: self.viewModel.writingViewDefaultImage)
+            self.addToMainView(subView: writingView)
         }
     }
 }
