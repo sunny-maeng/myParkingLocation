@@ -17,6 +17,7 @@
 		41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */; };
 		41DD30C829CB209400DCE87A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C729CB209400DCE87A /* UIColor+.swift */; };
 		41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C929CB313400DCE87A /* MainViewModel.swift */; };
+		41DD30CC29CB3C9900DCE87A /* DefaultImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30CB29CB3C9900DCE87A /* DefaultImageView.swift */; };
 		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		41DD30C729CB209400DCE87A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		41DD30C929CB313400DCE87A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		41DD30CB29CB3C9900DCE87A /* DefaultImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultImageView.swift; sourceTree = "<group>"; };
 		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				416891CE29A87EA600677202 /* MainViewController.swift */,
+				41DD30CB29CB3C9900DCE87A /* DefaultImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
 				416891CB29A87EA600677202 /* AppDelegate.swift in Sources */,
 				414310D429CAE7730071795E /* Location.swift in Sources */,
+				41DD30CC29CB3C9900DCE87A /* DefaultImageView.swift in Sources */,
 				414310D029CAE6560071795E /* LocationProvider.swift in Sources */,
 				416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */,
 				41DD30C829CB209400DCE87A /* UIColor+.swift in Sources */,

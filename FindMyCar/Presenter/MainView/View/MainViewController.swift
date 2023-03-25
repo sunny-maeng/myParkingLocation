@@ -11,14 +11,13 @@ class MainViewController: UIViewController {
 
     let viewModel: MainViewModel = MainViewModel()
 
-    private lazy var defaultImageView: UIImageView = {
-        let image: UIImage? = UIImage(systemName: viewModel.defaultImage)
-        let imageView: UIImageView = UIImageView(image: image)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = Default.cornerRadius
-        imageView.clipsToBounds =  true
+    private var mainView: UIView = {
+        let view: UIView = UIView()
+        view.clipsToBounds =  true
+        view.layer.cornerRadius = Default.cornerRadius
+        view.translatesAutoresizingMaskIntoConstraints = false
 
-        return imageView
+        return view
     }()
 
     private lazy var positioningButton: UIButton = {
@@ -62,33 +61,23 @@ class MainViewController: UIViewController {
     }()
 
     private lazy var refreshButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize - 10, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.refreshButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
-        button.backgroundColor = .mainBlue
+        button.backgroundColor = .systemGray
         button.layer.cornerRadius = Default.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private let firstButtonsStackView: UIStackView = {
+    private let receiveButtonsStackView: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = Default.stackSpacing
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-
-        return stackView
-    }()
-
-    private let secondButtonsStackView: UIStackView = {
-        let stackView: UIStackView = UIStackView()
-        stackView.axis = .horizontal
         stackView.spacing = Default.stackSpacing
-        stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -97,8 +86,8 @@ class MainViewController: UIViewController {
     private let totalStackView: UIStackView = {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .vertical
+        stackView.distribution = .fill
         stackView.spacing = Default.stackSpacing
-        stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -116,15 +105,11 @@ class MainViewController: UIViewController {
     }
 
     private func configureHierarchy() {
-        [positioningButton, cameraButton].forEach { button in
-            firstButtonsStackView.addArrangedSubview(button)
+        [positioningButton, cameraButton, pencilButton].forEach { button in
+            receiveButtonsStackView.addArrangedSubview(button)
         }
 
-        [pencilButton, refreshButton].forEach { button in
-            secondButtonsStackView.addArrangedSubview(button)
-        }
-
-        [defaultImageView, firstButtonsStackView, secondButtonsStackView].forEach { view in
+        [mainView, receiveButtonsStackView, refreshButton].forEach { view in
             totalStackView.addArrangedSubview(view)
         }
 
@@ -132,18 +117,21 @@ class MainViewController: UIViewController {
     }
 
     private func configureLayout() {
-        [positioningButton, cameraButton, pencilButton, refreshButton].forEach { button in
-            button.heightAnchor.constraint(equalTo: button.widthAnchor, multiplier: 0.5 ).isActive = true
+        [positioningButton, cameraButton, pencilButton].forEach { button in
+            button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
         }
 
         NSLayoutConstraint.activate([
+            mainView.widthAnchor.constraint(equalTo: totalStackView.widthAnchor),
+            mainView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.2),
+            mainView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+
+            refreshButton.heightAnchor.constraint(equalTo: receiveButtonsStackView.heightAnchor, multiplier: 0.5),
+
             totalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             totalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            totalStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-
-            defaultImageView.widthAnchor.constraint(equalTo: totalStackView.widthAnchor),
-            defaultImageView.heightAnchor.constraint(equalTo: defaultImageView.widthAnchor, multiplier: 1.2),
-            defaultImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            totalStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            totalStackView.heightAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.heightAnchor)
         ])
     }
 }
