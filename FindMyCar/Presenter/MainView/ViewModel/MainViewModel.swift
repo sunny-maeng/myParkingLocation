@@ -9,6 +9,7 @@ import Foundation
 
 final class MainViewModel {
 
+    let defaultTitle: String = "주차위치를 등록해주세요"
     let defaultImage: String = "car"
     let positioningButtonImage: String = "flag"
     let cameraButtonImage: String = "camera"

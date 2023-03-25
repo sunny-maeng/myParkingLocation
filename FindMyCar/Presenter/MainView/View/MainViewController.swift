@@ -14,60 +14,61 @@ class MainViewController: UIViewController {
     private var mainView: UIView = {
         let view: UIView = UIView()
         view.clipsToBounds =  true
-        view.layer.cornerRadius = Default.cornerRadius
+        view.layer.cornerRadius = Constant.cornerRadius
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
     }()
 
     private lazy var positioningButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.positioningButtonImage,
                                             withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Default.cornerRadius
+        button.layer.cornerRadius = Constant.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
     private lazy var cameraButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.cameraButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Default.cornerRadius
+        button.layer.cornerRadius = Constant.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private lazy var pencilButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize, weight: .bold)
+    private lazy var writeButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.pencilButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Default.cornerRadius
+        button.layer.cornerRadius = Constant.cornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private lazy var refreshButton: UIButton = {
-        let imageConfig = UIImage.SymbolConfiguration(pointSize: Default.buttonImagePointSize - 10, weight: .bold)
+    private lazy var resetButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize - 10, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.refreshButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(frame: .zero)
         button.setImage(buttonImage, for: .normal)
         button.imageView?.tintColor = .white
         button.backgroundColor = .systemGray
-        button.layer.cornerRadius = Default.cornerRadius
+        button.layer.cornerRadius = Constant.cornerRadius
+        button.addAction(touchedUpRefreshButton(), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -77,7 +78,7 @@ class MainViewController: UIViewController {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.spacing = Default.stackSpacing
+        stackView.spacing = Constant.stackSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -87,7 +88,7 @@ class MainViewController: UIViewController {
         let stackView: UIStackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = Default.stackSpacing
+        stackView.spacing = Constant.stackSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -97,6 +98,38 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
+}
+
+// MARK: - MainView Change
+extension MainViewController {
+
+    private func addToMainView(subView: UIView) {
+        mainView.addSubview(subView)
+
+        NSLayoutConstraint.activate([
+            subView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),
+            subView.topAnchor.constraint(equalTo: mainView.topAnchor),
+            subView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
+            subView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
+        ])
+    }
+}
+
+// MARK: - resetButton
+extension MainViewController {
+
+    private func touchedUpRefreshButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
+            self.addToMainView(subView: defaultView)
+        }
+    }
+}
+
+// MARK: - View hierarchy, layout
+extension MainViewController {
 
     private func setupView() {
         self.view.backgroundColor = .systemBackground
@@ -105,11 +138,11 @@ class MainViewController: UIViewController {
     }
 
     private func configureHierarchy() {
-        [positioningButton, cameraButton, pencilButton].forEach { button in
+        [positioningButton, cameraButton, writeButton].forEach { button in
             receiveButtonsStackView.addArrangedSubview(button)
         }
 
-        [mainView, receiveButtonsStackView, refreshButton].forEach { view in
+        [mainView, receiveButtonsStackView, resetButton].forEach { view in
             totalStackView.addArrangedSubview(view)
         }
 
@@ -117,7 +150,7 @@ class MainViewController: UIViewController {
     }
 
     private func configureLayout() {
-        [positioningButton, cameraButton, pencilButton].forEach { button in
+        [positioningButton, cameraButton, writeButton].forEach { button in
             button.heightAnchor.constraint(equalTo: button.widthAnchor).isActive = true
         }
 
@@ -126,22 +159,12 @@ class MainViewController: UIViewController {
             mainView.heightAnchor.constraint(equalTo: mainView.widthAnchor, multiplier: 1.2),
             mainView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
 
-            refreshButton.heightAnchor.constraint(equalTo: receiveButtonsStackView.heightAnchor, multiplier: 0.5),
+            resetButton.heightAnchor.constraint(equalTo: receiveButtonsStackView.heightAnchor, multiplier: 0.5),
 
             totalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             totalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             totalStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             totalStackView.heightAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.heightAnchor)
         ])
-    }
-}
-
-extension MainViewController {
-
-    enum Default {
-
-        static let cornerRadius: CGFloat = 10
-        static let stackSpacing: CGFloat = 20
-        static let buttonImagePointSize: CGFloat = 50
     }
 }
