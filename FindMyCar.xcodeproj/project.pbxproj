@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		414310D029CAE6560071795E /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414310CF29CAE6560071795E /* LocationProvider.swift */; };
 		414310D429CAE7730071795E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414310D329CAE7730071795E /* Location.swift */; };
+		4143596F29CFE87500141137 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143596E29CFE87500141137 /* PhotoView.swift */; };
 		416891CB29A87EA600677202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CA29A87EA600677202 /* AppDelegate.swift */; };
 		416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CC29A87EA600677202 /* SceneDelegate.swift */; };
 		416891CF29A87EA600677202 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CE29A87EA600677202 /* MainViewController.swift */; };
@@ -27,6 +28,7 @@
 		1F0E6D129F45677C6830F4F3 /* Pods-FindMyCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.release.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.release.xcconfig"; sourceTree = "<group>"; };
 		414310CF29CAE6560071795E /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
 		414310D329CAE7730071795E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		4143596E29CFE87500141137 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		416891C729A87EA600677202 /* FindMyCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		416891CA29A87EA600677202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		416891CC29A87EA600677202 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				416891CE29A87EA600677202 /* MainViewController.swift */,
 				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
 				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
+				4143596E29CFE87500141137 /* PhotoView.swift */,
 				41D4FC8E29CF4D2C005DD915 /* Constant.swift */,
 			);
 			path = View;
@@ -306,6 +309,7 @@
 				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
 				41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */,
 				416891CB29A87EA600677202 /* AppDelegate.swift in Sources */,
+				4143596F29CFE87500141137 /* PhotoView.swift in Sources */,
 				414310D429CAE7730071795E /* Location.swift in Sources */,
 				41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */,
 				414310D029CAE6560071795E /* LocationProvider.swift in Sources */,
@@ -378,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -432,7 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

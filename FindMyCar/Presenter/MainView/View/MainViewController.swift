@@ -42,6 +42,7 @@ class MainViewController: UIViewController {
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
         button.layer.cornerRadius = Constant.cornerRadius
+        button.addAction(touchedUpCameraButton(), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -101,8 +102,49 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - ButtonAction
+extension MainViewController {
+
+    private func touchedUpRefreshButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
+            self.changeSubviewOfMainView(to: defaultView)
+        }
+    }
+
+    private func touchedUpDrawingButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            let drawingView = DrawingView(defaultImage: self.viewModel.writingViewDefaultImage)
+            self.changeSubviewOfMainView(to: drawingView)
+        }
+    }
+
+    private func touchedUpCameraButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            let photoView = PhotoView(defaultImage: self.viewModel.photoViewDefaultImage)
+            self.changeSubviewOfMainView(to: photoView)
+            self.present(photoView.imagePickerController, animated: true)
+        }
+    }
+}
+
 // MARK: - MainView Change
 extension MainViewController {
+
+    private func changeSubviewOfMainView(to subView: UIView) {
+        self.removeSubViewsOfMainView()
+        self.addToMainView(subView: subView)
+    }
+
+    private func removeSubViewsOfMainView() {
+        mainView.subviews.forEach { $0.removeFromSuperview() }
+    }
 
     private func addToMainView(subView: UIView) {
         mainView.addSubview(subView)
@@ -113,40 +155,6 @@ extension MainViewController {
             subView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             subView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
         ])
-    }
-
-    private func removeAllSubViewsOfMainView() {
-        mainView.subviews.forEach { $0.removeFromSuperview() }
-    }
-}
-
-// MARK: - resetButtonAction
-extension MainViewController {
-
-    private func touchedUpRefreshButton() -> UIAction {
-        return UIAction { [weak self] _ in
-            guard let self = self else { return }
-
-            self.removeAllSubViewsOfMainView()
-
-            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
-            self.addToMainView(subView: defaultView)
-        }
-    }
-}
-
-// MARK: - drawingButtonAction
-extension MainViewController {
-
-    private func touchedUpDrawingButton() -> UIAction {
-        return UIAction { [weak self] _ in
-            guard let self = self else { return }
-
-            self.removeAllSubViewsOfMainView()
-
-            let drawingView = DrawingView(defaultImage: self.viewModel.writingViewDefaultImage)
-            self.addToMainView(subView: drawingView)
-        }
     }
 }
 
