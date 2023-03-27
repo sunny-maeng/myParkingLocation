@@ -37,7 +37,7 @@
 		416891CE29A87EA600677202 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		416891D329A87EA700677202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		416891D629A87EA700677202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		416891D829A87EA700677202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		416891D829A87EA700677202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = FindMyCar/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
 		41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindMyCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41C4F15429D13BC400F20831 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		41C4F15729D13E7D00F20831 /* MapProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProvider.swift; sourceTree = "<group>"; };
@@ -94,24 +94,22 @@
 		416891C929A87EA600677202 /* FindMyCar */ = {
 			isa = PBXGroup;
 			children = (
-				41C4F15D29D175F000F20831 /* Domain */,
-				4184C77E29C7471900C53C00 /* Presenter */,
 				41CAAA9D29BCCD5E00E83A83 /* Application */,
+				4184C77E29C7471900C53C00 /* Presentation */,
+				41C4F15D29D175F000F20831 /* Domain */,
 				414310CE29CAE63F0071795E /* InfraStructure */,
-				416891D329A87EA700677202 /* Assets.xcassets */,
-				416891D529A87EA700677202 /* LaunchScreen.storyboard */,
-				416891D829A87EA700677202 /* Info.plist */,
+				41C4F16129D18D5E00F20831 /* Resource */,
 			);
 			path = FindMyCar;
 			sourceTree = "<group>";
 		};
-		4184C77E29C7471900C53C00 /* Presenter */ = {
+		4184C77E29C7471900C53C00 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				41C4F16029D18CF700F20831 /* ViewScene */,
 				41DD30C529CB1FFA00DCE87A /* Utils */,
-				41DD30C229CB0DFD00DCE87A /* MainView */,
 			);
-			path = Presenter;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		41C4F15629D13E6800F20831 /* Map */ = {
@@ -136,6 +134,35 @@
 				414310D329CAE7730071795E /* Location.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		41C4F15F29D18C7E00F20831 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15429D13BC400F20831 /* MapView.swift */,
+				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
+				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
+				4143596E29CFE87500141137 /* PhotoView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		41C4F16029D18CF700F20831 /* ViewScene */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30C229CB0DFD00DCE87A /* MainView */,
+			);
+			path = ViewScene;
+			sourceTree = "<group>";
+		};
+		41C4F16129D18D5E00F20831 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				416891D329A87EA700677202 /* Assets.xcassets */,
+				416891D529A87EA700677202 /* LaunchScreen.storyboard */,
+				416891D829A87EA700677202 /* Info.plist */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		41CAAA9D29BCCD5E00E83A83 /* Application */ = {
@@ -169,11 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				416891CE29A87EA600677202 /* MainViewController.swift */,
-				41C4F15429D13BC400F20831 /* MapView.swift */,
-				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
-				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
-				4143596E29CFE87500141137 /* PhotoView.swift */,
-				41D4FC8E29CF4D2C005DD915 /* Constant.swift */,
+				41C4F15F29D18C7E00F20831 /* MainView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -181,6 +204,7 @@
 		41DD30C529CB1FFA00DCE87A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				41D4FC8E29CF4D2C005DD915 /* Constant.swift */,
 				41C4F15B29D16C9900F20831 /* Observable.swift */,
 				41DD30C629CB208600DCE87A /* Extension */,
 			);
@@ -410,6 +434,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -464,6 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -485,7 +511,7 @@
 				DEVELOPMENT_TEAM = G9W4Z8U9JB;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_FLATTEN_NIBS = YES;
-				INFOPLIST_FILE = FindMyCar/Info.plist;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -515,7 +541,7 @@
 				DEVELOPMENT_TEAM = G9W4Z8U9JB;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_FLATTEN_NIBS = YES;
-				INFOPLIST_FILE = FindMyCar/Info.plist;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
