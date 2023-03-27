@@ -15,6 +15,10 @@
 		416891CF29A87EA600677202 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CE29A87EA600677202 /* MainViewController.swift */; };
 		416891D429A87EA700677202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416891D329A87EA700677202 /* Assets.xcassets */; };
 		416891D729A87EA700677202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416891D529A87EA700677202 /* LaunchScreen.storyboard */; };
+		41C4F15529D13BC400F20831 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15429D13BC400F20831 /* MapView.swift */; };
+		41C4F15829D13E7D00F20831 /* MapProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15729D13E7D00F20831 /* MapProvider.swift */; };
+		41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15929D16C0E00F20831 /* MapViewModel.swift */; };
+		41C4F15C29D16C9900F20831 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15B29D16C9900F20831 /* Observable.swift */; };
 		41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */; };
 		41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC8E29CF4D2C005DD915 /* Constant.swift */; };
 		41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC9029CF51C1005DD915 /* DrawingView.swift */; };
