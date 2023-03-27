@@ -26,6 +26,7 @@ final class DefaultMapProvider: NSObject {
 
     private func configureMapView() {
         mapView.showsUserLocation =  true
+        mapView.delegate = self
     }
 }
 
@@ -50,5 +51,19 @@ extension DefaultMapProvider: MapProvider {
         annotation.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         annotation.title = title
         mapView.addAnnotation(annotation)
+    }
+}
+
+extension DefaultMapProvider: MKMapViewDelegate {
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation is MKUserLocation { return nil }
+
+        let annotationImage = UIImage(systemName: "car")
+        let annotationView = MKMarkerAnnotationView(annotation: annotation,
+                                                    reuseIdentifier: "car")
+        annotationView.markerTintColor = .red
+        annotationView.glyphImage = annotationImage
+        return annotationView
     }
 }
