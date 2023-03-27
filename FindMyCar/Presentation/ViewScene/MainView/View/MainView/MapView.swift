@@ -45,10 +45,10 @@ final class MapView: UIView {
         }
 
         viewModel.parkingLocation.bind { [weak self] location in
-            guard let location = location, let self = self else { return }
+            guard let location = location,
+                  let self = self else { return }
 
-            let latitude = location.latitude
-            let longitude = location.longitude
+            let (latitude, longitude) = (location.latitude, location.longitude)
             let delta = 0.001
             let title = self.viewModel.parkingAnnotationTitle
             self.mapProvider.locateMap(latitude: latitude, longitude: longitude, delta: delta)

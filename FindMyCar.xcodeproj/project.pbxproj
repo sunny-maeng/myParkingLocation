@@ -18,6 +18,7 @@
 		41C4F15829D13E7D00F20831 /* MapProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15729D13E7D00F20831 /* MapProvider.swift */; };
 		41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15929D16C0E00F20831 /* MapViewModel.swift */; };
 		41C4F15C29D16C9900F20831 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15B29D16C9900F20831 /* Observable.swift */; };
+		41C4F16529D19D0200F20831 /* UIButton+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F16429D19D0200F20831 /* UIButton+init.swift */; };
 		41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */; };
 		41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC8E29CF4D2C005DD915 /* Constant.swift */; };
 		41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC9029CF51C1005DD915 /* DrawingView.swift */; };
@@ -43,6 +44,7 @@
 		41C4F15729D13E7D00F20831 /* MapProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProvider.swift; sourceTree = "<group>"; };
 		41C4F15929D16C0E00F20831 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		41C4F15B29D16C9900F20831 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		41C4F16429D19D0200F20831 /* UIButton+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+init.swift"; sourceTree = "<group>"; };
 		41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		41D4FC8E29CF4D2C005DD915 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		41D4FC9029CF51C1005DD915 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				41DD30C729CB209400DCE87A /* UIColor+.swift */,
+				41C4F16429D19D0200F20831 /* UIButton+init.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */,
 				416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */,
 				41DD30C829CB209400DCE87A /* UIColor+.swift in Sources */,
+				41C4F16529D19D0200F20831 /* UIButton+init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,6 @@ enum Constant {
     static let stackSpacing: CGFloat = 20
     static let borderWidth: CGFloat = 2
     static let buttonImagePointSize: CGFloat = 50
-    static let writingViewDefaultImagePointSize: CGFloat = 100
     static let photoViewDefaultImagePointSize: CGFloat = 100
+    static let writingViewDefaultImagePointSize: CGFloat = 100
 }

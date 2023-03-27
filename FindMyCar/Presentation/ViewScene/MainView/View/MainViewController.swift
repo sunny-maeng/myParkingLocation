@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
 
     let viewModel: MainViewModel = MainViewModel()
 
+    // UI Elements
     private var mainView: UIView = {
         let view: UIView = UIView()
         view.clipsToBounds =  true
@@ -24,13 +25,8 @@ class MainViewController: UIViewController {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.positioningButtonImage,
                                             withConfiguration: imageConfig)
-        let button: UIButton = UIButton(frame: .zero)
-        button.setImage(buttonImage, for: .normal)
-        button.imageView?.tintColor = .white
-        button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Constant.cornerRadius
+        let button: UIButton = UIButton(imageConfig: imageConfig, image: buttonImage)
         button.addAction(touchedUpPositioningButton(), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
@@ -38,13 +34,8 @@ class MainViewController: UIViewController {
     private lazy var cameraButton: UIButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.cameraButtonImage, withConfiguration: imageConfig)
-        let button: UIButton = UIButton(frame: .zero)
-        button.setImage(buttonImage, for: .normal)
-        button.imageView?.tintColor = .white
-        button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Constant.cornerRadius
+        let button: UIButton = UIButton(imageConfig: imageConfig, image: buttonImage)
         button.addAction(touchedUpCameraButton(), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
@@ -52,13 +43,8 @@ class MainViewController: UIViewController {
     private lazy var drawingButton: UIButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.pencilButtonImage, withConfiguration: imageConfig)
-        let button: UIButton = UIButton(frame: .zero)
-        button.setImage(buttonImage, for: .normal)
-        button.imageView?.tintColor = .white
-        button.backgroundColor = .mainBlue
-        button.layer.cornerRadius = Constant.cornerRadius
+        let button: UIButton = UIButton(imageConfig: imageConfig, image: buttonImage)
         button.addAction(touchedUpDrawingButton(), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
@@ -66,13 +52,9 @@ class MainViewController: UIViewController {
     private lazy var resetButton: UIButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize - 10, weight: .bold)
         let buttonImage: UIImage? = UIImage(systemName: viewModel.refreshButtonImage, withConfiguration: imageConfig)
-        let button: UIButton = UIButton(frame: .zero)
-        button.setImage(buttonImage, for: .normal)
-        button.imageView?.tintColor = .white
+        let button: UIButton = UIButton(imageConfig: imageConfig, image: buttonImage)
         button.backgroundColor = .systemGray
-        button.layer.cornerRadius = Constant.cornerRadius
         button.addAction(touchedUpRefreshButton(), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
@@ -115,12 +97,13 @@ extension MainViewController {
         }
     }
 
-    private func touchedUpRefreshButton() -> UIAction {
+    private func touchedUpCameraButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
-            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
-            self.changeSubviewOfMainView(to: defaultView)
+            let photoView = PhotoView(defaultImage: self.viewModel.photoViewDefaultImage)
+            self.changeSubviewOfMainView(to: photoView)
+            self.present(photoView.imagePickerController, animated: true)
         }
     }
 
@@ -133,13 +116,12 @@ extension MainViewController {
         }
     }
 
-    private func touchedUpCameraButton() -> UIAction {
+    private func touchedUpRefreshButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
-            let photoView = PhotoView(defaultImage: self.viewModel.photoViewDefaultImage)
-            self.changeSubviewOfMainView(to: photoView)
-            self.present(photoView.imagePickerController, animated: true)
+            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
+            self.changeSubviewOfMainView(to: defaultView)
         }
     }
 }
