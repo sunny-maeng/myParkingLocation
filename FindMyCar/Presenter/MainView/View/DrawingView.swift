@@ -11,7 +11,7 @@ final class DrawingView: UIView {
 
     private var lastPoint: CGPoint?
     private let lineSize: CGFloat = 10
-    private let lineColor: CGColor = UIColor.black.cgColor
+    private let lineColor: CGColor = UIColor.label.cgColor
 
     private lazy var clearButton: UIButton = {
         let button = UIButton()
@@ -28,6 +28,7 @@ final class DrawingView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .center
         imageView.translatesAutoresizingMaskIntoConstraints = false
+
         return imageView
     }()
 

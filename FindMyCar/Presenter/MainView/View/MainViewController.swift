@@ -29,6 +29,7 @@ class MainViewController: UIViewController {
         button.imageView?.tintColor = .white
         button.backgroundColor = .mainBlue
         button.layer.cornerRadius = Constant.cornerRadius
+        button.addAction(touchedUpPositioningButton(), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -104,6 +105,15 @@ class MainViewController: UIViewController {
 
 // MARK: - ButtonAction
 extension MainViewController {
+
+    private func touchedUpPositioningButton() -> UIAction {
+        return UIAction { [weak self] _ in
+            guard let self = self else { return }
+
+            let mapView = MapView()
+            self.changeSubviewOfMainView(to: mapView)
+        }
+    }
 
     private func touchedUpRefreshButton() -> UIAction {
         return UIAction { [weak self] _ in
