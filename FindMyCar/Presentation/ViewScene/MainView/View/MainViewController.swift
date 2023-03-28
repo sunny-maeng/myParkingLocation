@@ -104,7 +104,8 @@ extension MainViewController {
 
             let photoView = PhotoView(defaultImage: self.viewModel.photoViewDefaultImage)
             self.changeSubviewOfMainView(to: photoView)
-            self.present(photoView.imagePickerController, animated: true)
+            photoView.delegate = self
+            photoView.openCamera()
         }
     }
 
@@ -159,10 +160,24 @@ extension MainViewController: MapViewDelegate, Alertable {
         showAlert(title: viewModel.errorTitle, massage: description)
     }
 
-    func requestLocationServiceAlert() {
+    func requestLocationAuthorization() {
         showLocationServiceRequestAlert()
     }
 }
+
+// MARK: - PhotoViewDelegate
+extension MainViewController: PhotoViewDelegate {
+
+    func requestCameraAuthorization() {
+        self.showCameraServiceRequestAlert()
+        
+    }
+
+    func openCamera(_ camera: UIImagePickerController) {
+        self.present(camera, animated: true)
+    }
+}
+
 // MARK: - View hierarchy, layout
 extension MainViewController {
 

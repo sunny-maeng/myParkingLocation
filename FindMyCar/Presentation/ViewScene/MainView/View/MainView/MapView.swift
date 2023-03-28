@@ -10,7 +10,7 @@ import UIKit
 protocol MapViewDelegate: AnyObject where Self: UIViewController {
 
     func handleError(description: String)
-    func requestLocationServiceAlert()
+    func requestLocationAuthorization()
 }
 
 final class MapView: UIView {
@@ -48,7 +48,7 @@ final class MapView: UIView {
 
         viewModel.isUserDeviceLocationServiceAuthorized.bind { [weak self] bool in
             guard let bool = bool, !bool else { return  }
-            self?.delegate?.requestLocationServiceAlert()
+            self?.delegate?.requestLocationAuthorization()
         }
     }
 

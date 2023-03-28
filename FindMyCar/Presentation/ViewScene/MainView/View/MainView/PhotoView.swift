@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import Photos
+
+protocol PhotoViewDelegate: AnyObject {
+
+    func requestCameraAuthorization()
+    func openCamera(_ camera: UIImagePickerController)
+}
 
 final class PhotoView: UIView {
 
-    private(set) lazy var imagePickerController: UIImagePickerController = {
+    var delegate: PhotoViewDelegate?
+
+    private lazy var imagePickerController: UIImagePickerController = {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .camera
         imagePickerController.allowsEditing = true
@@ -34,6 +43,37 @@ final class PhotoView: UIView {
         self.init(frame: .zero)
         self.setupView()
         setupImageInPhotoImageView(imageName: defaultImage)
+    }
+
+    func openCamera() {
+        guard checkCameraAuthorization() else { return }
+        delegate?.openCamera(self.imagePickerController)
+    }
+
+    private func checkCameraAuthorization() -> Bool {
+        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        var isCameraAuthorized: Bool = false
+
+        switch authStatus {
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] isAuthorized in
+                DispatchQueue.main.async {
+                    if !isAuthorized {
+                        self?.delegate?.requestCameraAuthorization()
+                    } else {
+                        guard let imagePickerController = self?.imagePickerController else { return }
+                        self?.delegate?.openCamera(imagePickerController)
+                    }
+                }
+            }
+        case .restricted, .denied:
+            self.delegate?.requestCameraAuthorization()
+            isCameraAuthorized = false
+        default:
+            isCameraAuthorized = true
+        }
+
+        return isCameraAuthorized
     }
 }
 
