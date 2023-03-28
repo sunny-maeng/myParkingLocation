@@ -9,7 +9,8 @@ import UIKit
 
 protocol MapViewDelegate: AnyObject where Self: UIViewController {
 
-    func showError(description: String)
+    func handleError(description: String)
+    func requestLocationServiceAlert()
 }
 
 final class MapView: UIView {
@@ -24,6 +25,7 @@ final class MapView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         bindViewModel()
+        setupView()
     }
 
     required init?(coder: NSCoder) {
@@ -31,17 +33,22 @@ final class MapView: UIView {
     }
 
     private func bindViewModel() {
-        viewModel.error.bind { [weak self] errorDescription in
-            guard let errorDescription = errorDescription else { return }
-            self?.delegate?.showError(description: errorDescription)
-        }
-
         viewModel.parkingLocation.bind { [weak self] location in
             guard let location = location else { return }
 
             let (latitude, longitude) = (location.latitude, location.longitude)
             let delta = 0.001
             self?.generateMap(annotationLatitude: latitude, annotationLongitude: longitude, delta: delta)
+        }
+
+        viewModel.error.bind { [weak self] errorDescription in
+            guard let errorDescription = errorDescription else { return }
+            self?.delegate?.handleError(description: errorDescription)
+        }
+
+        viewModel.isUserDeviceLocationServiceAuthorized.bind { [weak self] bool in
+            guard let bool = bool, !bool else { return  }
+            self?.delegate?.requestLocationServiceAlert()
         }
     }
 

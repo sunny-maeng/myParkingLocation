@@ -93,6 +93,7 @@ extension MainViewController {
             guard let self = self else { return }
 
             let mapView = MapView()
+            mapView.delegate = self
             self.changeSubviewOfMainView(to: mapView)
         }
     }
@@ -151,6 +152,17 @@ extension MainViewController {
     }
 }
 
+// MARK: - MapViewDelegate
+extension MainViewController: MapViewDelegate, Alertable {
+
+    func handleError(description: String) {
+        showAlert(title: viewModel.errorTitle, massage: description)
+    }
+
+    func requestLocationServiceAlert() {
+        showLocationServiceRequestAlert()
+    }
+}
 // MARK: - View hierarchy, layout
 extension MainViewController {
 

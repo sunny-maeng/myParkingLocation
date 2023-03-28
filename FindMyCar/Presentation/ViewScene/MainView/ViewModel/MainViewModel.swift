@@ -17,4 +17,5 @@ final class MainViewModel {
     let refreshButtonImage: String = "arrow.clockwise"
     let writingViewDefaultImage: String = "hand.draw"
     let photoViewDefaultImage: String = "camera.viewfinder"
+    let errorTitle: String = "Error"
 }

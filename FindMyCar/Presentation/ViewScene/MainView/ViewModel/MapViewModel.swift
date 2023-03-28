@@ -12,6 +12,7 @@ final class MapViewModel: NSObject {
 
     let parkingLocation: Observable<Location?> = Observable(nil)
     let error: Observable<String?> = Observable(nil)
+    let isUserDeviceLocationServiceAuthorized: Observable<Bool?> = Observable(nil)
     let parkingAnnotationTitle: String = "CAR"
 
     private lazy var locationManager: CLLocationManager = {
@@ -38,7 +39,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .denied, .restricted:
-            self.error.value = "위치정보 권한이 없어 위치를 가져올 수 없습니다."
+            isUserDeviceLocationServiceAuthorized.value = false
         default:
             return
         }
@@ -53,7 +54,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         switch (error as? CLError)?.code {
         case .denied:
-            self.error.value = "위치정보 권한이 없어 위치를 가져올 수 없습니다."
+            isUserDeviceLocationServiceAuthorized.value = false
         case .network:
             self.error.value = "네크워크 연결을 확인해주세요."
         case .locationUnknown:
