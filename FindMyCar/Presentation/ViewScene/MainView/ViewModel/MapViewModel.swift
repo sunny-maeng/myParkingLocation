@@ -14,15 +14,16 @@ final class MapViewModel: NSObject {
     let error: Observable<String?> = Observable(nil)
     let parkingAnnotationTitle: String = "CAR"
 
-    override init() {
-        super.init()
-        fetchLocation()
-    }
-
-    func fetchLocation() {
-        let locationManager: CLLocationManager = CLLocationManager()
+    private lazy var locationManager: CLLocationManager = {
+        let locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.delegate = self
+
+        return locationManager
+    }()
+
+    override init() {
+        super.init()
         locationManager.requestLocation()
     }
 }
@@ -32,8 +33,12 @@ extension MapViewModel: CLLocationManagerDelegate {
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
+        case .authorized, .authorizedWhenInUse, .authorizedAlways:
+            locationManager.requestLocation()
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            self.error.value = "위치정보 권한이 없어 위치를 가져올 수 없습니다."
         default:
             return
         }
@@ -46,12 +51,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        guard let CLError = error as? CLError else {
-            self.error.value = "위치 정보를 가져올 수 없습니다."
-            return
-        }
-
-        switch CLError.code {
+        switch (error as? CLError)?.code {
         case .denied:
             self.error.value = "위치정보 권한이 없어 위치를 가져올 수 없습니다."
         case .network:

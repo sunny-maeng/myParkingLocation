@@ -16,21 +16,13 @@ final class MapView: UIView {
 
     var delegate: MapViewDelegate?
 
-    private var mapProvider: MapProvider
     private let viewModel: MapViewModel
+    private var mapProvider: MapProvider?
+    private var mapView: UIView?
 
-    private lazy var mapView: UIView = {
-        let map = mapProvider.provideMap()
-        map.translatesAutoresizingMaskIntoConstraints = false
-
-        return map
-    }()
-
-    init(mapProvider: MapProvider = DefaultMapProvider(), viewModel: MapViewModel = MapViewModel()) {
-        self.mapProvider = mapProvider
+    init(viewModel: MapViewModel = MapViewModel()) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        setupView()
         bindViewModel()
     }
 
@@ -45,15 +37,23 @@ final class MapView: UIView {
         }
 
         viewModel.parkingLocation.bind { [weak self] location in
-            guard let location = location,
-                  let self = self else { return }
+            guard let location = location else { return }
 
             let (latitude, longitude) = (location.latitude, location.longitude)
             let delta = 0.001
-            let title = self.viewModel.parkingAnnotationTitle
-            self.mapProvider.locateMap(latitude: latitude, longitude: longitude, delta: delta)
-            self.mapProvider.setAnnotation(latitude: latitude, longitude: longitude, delta: delta, title: title)
+            self?.generateMap(annotationLatitude: latitude, annotationLongitude: longitude, delta: delta)
         }
+    }
+
+    private func generateMap(annotationLatitude: Double, annotationLongitude: Double, delta: Double) {
+        mapProvider = DefaultMapProvider()
+        mapView = mapProvider?.provideMap()
+        mapView?.translatesAutoresizingMaskIntoConstraints = false
+        setupView()
+
+        mapProvider?.locateMap(latitude: annotationLatitude, longitude: annotationLongitude, delta: delta)
+        mapProvider?.setAnnotation(latitude: annotationLatitude, longitude: annotationLongitude, delta: delta,
+                                  title: self.viewModel.parkingAnnotationTitle)
     }
 }
 
@@ -75,15 +75,19 @@ extension MapView {
     }
 
     private func configureHierarchy() {
-        self.addSubview(mapView)
+        if let mapView = mapView {
+            self.addSubview(mapView)
+        }
     }
-
+    
     private func configureLayout() {
-        NSLayoutConstraint.activate([
-            mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            mapView.topAnchor.constraint(equalTo: self.topAnchor),
-            mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
+        if let mapView = mapView {
+            NSLayoutConstraint.activate([
+                mapView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+                mapView.topAnchor.constraint(equalTo: self.topAnchor),
+                mapView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+                mapView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            ])
+        }
     }
 }
