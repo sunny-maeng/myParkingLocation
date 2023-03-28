@@ -64,8 +64,6 @@ extension MapView {
         configureHierarchy()
         configureLayout()
         configureBorder()
-
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func configureBorder() {
@@ -79,7 +77,7 @@ extension MapView {
             self.addSubview(mapView)
         }
     }
-    
+
     private func configureLayout() {
         if let mapView = mapView {
             NSLayoutConstraint.activate([

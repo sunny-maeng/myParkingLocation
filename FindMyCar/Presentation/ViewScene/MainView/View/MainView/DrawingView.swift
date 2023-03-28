@@ -132,8 +132,6 @@ extension DrawingView {
         configureHierarchy()
         configureLayout()
         configureBorder()
-
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func configureBorder() {

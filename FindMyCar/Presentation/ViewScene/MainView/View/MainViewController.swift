@@ -140,6 +140,7 @@ extension MainViewController {
 
     private func addToMainView(subView: UIView) {
         mainView.addSubview(subView)
+        subView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             subView.leadingAnchor.constraint(equalTo: mainView.leadingAnchor),

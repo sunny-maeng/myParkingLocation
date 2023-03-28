@@ -63,7 +63,6 @@ extension DefaultView {
         configureLayout()
 
         self.contentMode = .scaleAspectFit
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func configureHierarchy() {

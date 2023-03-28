@@ -74,8 +74,6 @@ extension PhotoView {
     private func setupView() {
         configureHierarchy()
         configureLayout()
-
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func configureHierarchy() {
