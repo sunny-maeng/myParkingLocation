@@ -21,11 +21,23 @@ final class MapView: UIView {
     private var mapProvider: MapProvider?
     private var mapView: UIView?
 
+    private lazy var defaultImageView: UIImageView = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.photoViewDefaultImagePointSize,
+                                                      weight: .medium)
+        let image = UIImage(systemName: viewModel.defaultImageName, withConfiguration: imageConfig)?
+            .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        return imageView
+    }()
+
     init(viewModel: MapViewModel = MapViewModel()) {
         self.viewModel = viewModel
         super.init(frame: .zero)
         bindViewModel()
         setupView()
+        setupDefaultImage()
     }
 
     required init?(coder: NSCoder) {
@@ -67,6 +79,15 @@ final class MapView: UIView {
 // Hierarchy & layout
 extension MapView {
 
+    private func setupDefaultImage() {
+        self.addSubview(defaultImageView)
+
+        NSLayoutConstraint.activate([
+            defaultImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            defaultImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+    }
+
     private func setupView() {
         configureHierarchy()
         configureLayout()
@@ -81,6 +102,9 @@ extension MapView {
 
     private func configureHierarchy() {
         if let mapView = mapView {
+            self.subviews.forEach { subView in
+                subView.removeFromSuperview()
+            }
             self.addSubview(mapView)
         }
     }

@@ -13,6 +13,7 @@ final class MapViewModel: NSObject {
     let parkingLocation: Observable<Location?> = Observable(nil)
     let error: Observable<String?> = Observable(nil)
     let isUserDeviceLocationServiceAuthorized: Observable<Bool?> = Observable(nil)
+    let defaultImageName: String = "map"
     let parkingAnnotationTitle: String = "CAR"
 
     private lazy var locationManager: CLLocationManager = {
@@ -54,7 +55,7 @@ extension MapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         switch (error as? CLError)?.code {
         case .denied:
-            isUserDeviceLocationServiceAuthorized.value = false
+            locationManagerDidChangeAuthorization(manager)
         case .network:
             self.error.value = "네크워크 연결을 확인해주세요."
         case .locationUnknown:

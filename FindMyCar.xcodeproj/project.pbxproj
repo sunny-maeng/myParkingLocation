@@ -151,10 +151,10 @@
 		41C4F15F29D18C7E00F20831 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				41C4F15429D13BC400F20831 /* MapView.swift */,
 				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
-				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
+				41C4F15429D13BC400F20831 /* MapView.swift */,
 				4143596E29CFE87500141137 /* PhotoView.swift */,
+				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
