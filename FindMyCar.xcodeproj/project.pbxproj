@@ -26,6 +26,10 @@
 		41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */; };
 		41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C929CB313400DCE87A /* MainViewModel.swift */; };
 		41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30CB29CB3C9900DCE87A /* DefaultView.swift */; };
+		41EB2ACD29D43BD5003AC5B2 /* ParkingLocation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2ACB29D43BD5003AC5B2 /* ParkingLocation.xcdatamodeld */; };
+		41EB2AD029D43C5C003AC5B2 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2ACF29D43C5C003AC5B2 /* CoreDataStorage.swift */; };
+		41EB2AD229D43CE1003AC5B2 /* CoreDataLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AD129D43CE1003AC5B2 /* CoreDataLocationStorage.swift */; };
+		41EB2AD429D4412C003AC5B2 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AD329D4412C003AC5B2 /* DataMapping.swift */; };
 		41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */; };
 		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
@@ -54,6 +58,10 @@
 		41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AssetColor.swift"; sourceTree = "<group>"; };
 		41DD30C929CB313400DCE87A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		41DD30CB29CB3C9900DCE87A /* DefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
+		41EB2ACC29D43BD5003AC5B2 /* ParkingLocation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ParkingLocation.xcdatamodel; sourceTree = "<group>"; };
+		41EB2ACF29D43C5C003AC5B2 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
+		41EB2AD129D43CE1003AC5B2 /* CoreDataLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocationStorage.swift; sourceTree = "<group>"; };
+		41EB2AD329D4412C003AC5B2 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AssetImage.swift"; sourceTree = "<group>"; };
 		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +111,7 @@
 				41CAAA9D29BCCD5E00E83A83 /* Application */,
 				4184C77E29C7471900C53C00 /* Presentation */,
 				41C4F15D29D175F000F20831 /* Domain */,
+				41EB2AC929D43BBC003AC5B2 /* Data */,
 				414310CE29CAE63F0071795E /* InfraStructure */,
 				41C4F16129D18D5E00F20831 /* Resource */,
 			);
@@ -234,6 +243,25 @@
 				41C4F16429D19D0200F20831 /* UIButton+init.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		41EB2AC929D43BBC003AC5B2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				41EB2ACA29D43BC5003AC5B2 /* CoreData */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		41EB2ACA29D43BC5003AC5B2 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				41EB2ACB29D43BD5003AC5B2 /* ParkingLocation.xcdatamodeld */,
+				41EB2ACF29D43C5C003AC5B2 /* CoreDataStorage.swift */,
+				41EB2AD129D43CE1003AC5B2 /* CoreDataLocationStorage.swift */,
+				41EB2AD329D4412C003AC5B2 /* DataMapping.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		46E6C53979A62B71FF69F99D /* Pods */ = {
@@ -371,18 +399,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */,
+				41EB2AD029D43C5C003AC5B2 /* CoreDataStorage.swift in Sources */,
 				41C4F15C29D16C9900F20831 /* Observable.swift in Sources */,
 				41C4F15529D13BC400F20831 /* MapView.swift in Sources */,
+				41EB2AD229D43CE1003AC5B2 /* CoreDataLocationStorage.swift in Sources */,
 				41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */,
 				41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */,
 				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
 				41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */,
+				41EB2AD429D4412C003AC5B2 /* DataMapping.swift in Sources */,
 				41C3E2CE29D2C02500224BA3 /* Alertable.swift in Sources */,
 				416891CB29A87EA600677202 /* AppDelegate.swift in Sources */,
 				4143596F29CFE87500141137 /* PhotoView.swift in Sources */,
 				41C4F15829D13E7D00F20831 /* MapProvider.swift in Sources */,
 				414310D429CAE7730071795E /* Location.swift in Sources */,
 				41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */,
+				41EB2ACD29D43BD5003AC5B2 /* ParkingLocation.xcdatamodeld in Sources */,
 				41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */,
 				416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */,
 				41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */,
@@ -602,6 +634,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		41EB2ACB29D43BD5003AC5B2 /* ParkingLocation.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				41EB2ACC29D43BD5003AC5B2 /* ParkingLocation.xcdatamodel */,
+			);
+			currentVersion = 41EB2ACC29D43BD5003AC5B2 /* ParkingLocation.xcdatamodel */;
+			path = ParkingLocation.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 416891BF29A87EA600677202 /* Project object */;
 }
