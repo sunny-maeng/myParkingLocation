@@ -12,13 +12,15 @@ final class MapViewModel: NSObject {
 
     let parkingLocation: Observable<Location?> = Observable(nil)
     let error: Observable<String?> = Observable(nil)
+    let isLoading: Observable<Bool> = Observable(false)
     let isUserDeviceLocationServiceAuthorized: Observable<Bool?> = Observable(nil)
+    let progressLabelText: String = "위치를 파악하고 있습니다"
     let defaultImageName: String = "map"
     let parkingAnnotationTitle: String = "CAR"
 
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
 
         return locationManager
@@ -37,6 +39,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         switch manager.authorizationStatus {
         case .authorized, .authorizedWhenInUse, .authorizedAlways:
             locationManager.requestLocation()
+            isLoading.value = true
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .denied, .restricted:
@@ -48,7 +51,7 @@ extension MapViewModel: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locationCoordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-
+        isLoading.value = false
         parkingLocation.value = Location(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
     }
 
@@ -63,5 +66,7 @@ extension MapViewModel: CLLocationManagerDelegate {
         default:
             self.error.value = "위치 정보를 가져올 수 없습니다."
         }
+
+        isLoading.value = false
     }
 }

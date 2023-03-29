@@ -170,7 +170,6 @@ extension MainViewController: PhotoViewDelegate {
 
     func requestCameraAuthorization() {
         self.showCameraServiceRequestAlert()
-        
     }
 
     func openCamera(_ camera: UIImagePickerController) {
