@@ -9,11 +9,13 @@ import Foundation
 
 struct Location {
 
-    let latitude: Double
-    let longitude: Double
+    let latitude: Double?
+    let longitude: Double?
+    let locationImage: Data?
 
-    init(latitude: Double, longitude: Double) {
+    init(latitude: Double? = nil, longitude: Double? = nil, locationImage: Data? = nil) {
         self.latitude = latitude
         self.longitude = longitude
+        self.locationImage = locationImage
     }
 }

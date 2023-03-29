@@ -86,7 +86,7 @@ final class MapView: UIView {
 
             let (latitude, longitude) = (location.latitude, location.longitude)
             let delta = 0.001
-            self?.generateMap(annotationLatitude: latitude, annotationLongitude: longitude, delta: delta)
+            self?.generateMap(annotationLatitude: latitude ?? 0, annotationLongitude: longitude ?? 0, delta: delta)
         }
 
         viewModel.error.bind { [weak self] errorDescription in
