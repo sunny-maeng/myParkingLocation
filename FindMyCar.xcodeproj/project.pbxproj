@@ -23,9 +23,10 @@
 		41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */; };
 		41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC8E29CF4D2C005DD915 /* Constant.swift */; };
 		41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC9029CF51C1005DD915 /* DrawingView.swift */; };
-		41DD30C829CB209400DCE87A /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C729CB209400DCE87A /* UIColor+.swift */; };
+		41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */; };
 		41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C929CB313400DCE87A /* MainViewModel.swift */; };
 		41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30CB29CB3C9900DCE87A /* DefaultView.swift */; };
+		41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */; };
 		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,9 +51,10 @@
 		41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		41D4FC8E29CF4D2C005DD915 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		41D4FC9029CF51C1005DD915 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
-		41DD30C729CB209400DCE87A /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AssetColor.swift"; sourceTree = "<group>"; };
 		41DD30C929CB313400DCE87A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		41DD30CB29CB3C9900DCE87A /* DefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
+		41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AssetImage.swift"; sourceTree = "<group>"; };
 		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,7 +229,8 @@
 		41DD30C629CB208600DCE87A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				41DD30C729CB209400DCE87A /* UIColor+.swift */,
+				41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */,
+				41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */,
 				41C4F16429D19D0200F20831 /* UIButton+init.swift */,
 			);
 			path = Extension;
@@ -370,6 +373,7 @@
 				41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */,
 				41C4F15C29D16C9900F20831 /* Observable.swift in Sources */,
 				41C4F15529D13BC400F20831 /* MapView.swift in Sources */,
+				41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */,
 				41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */,
 				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
 				41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */,
@@ -381,7 +385,7 @@
 				41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */,
 				41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */,
 				416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */,
-				41DD30C829CB209400DCE87A /* UIColor+.swift in Sources */,
+				41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */,
 				41C4F16529D19D0200F20831 /* UIButton+init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
