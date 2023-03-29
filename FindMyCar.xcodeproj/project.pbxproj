@@ -7,23 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		414310D429CAE7730071795E /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414310D329CAE7730071795E /* Location.swift */; };
+		4143596F29CFE87500141137 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4143596E29CFE87500141137 /* PhotoView.swift */; };
 		416891CB29A87EA600677202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CA29A87EA600677202 /* AppDelegate.swift */; };
 		416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CC29A87EA600677202 /* SceneDelegate.swift */; };
-		416891CF29A87EA600677202 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CE29A87EA600677202 /* ViewController.swift */; };
-		416891D229A87EA600677202 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416891D029A87EA600677202 /* Main.storyboard */; };
+		416891CF29A87EA600677202 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416891CE29A87EA600677202 /* MainViewController.swift */; };
 		416891D429A87EA700677202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 416891D329A87EA700677202 /* Assets.xcassets */; };
 		416891D729A87EA700677202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 416891D529A87EA700677202 /* LaunchScreen.storyboard */; };
+		41C3E2CE29D2C02500224BA3 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C3E2CD29D2C02500224BA3 /* Alertable.swift */; };
+		41C4F15529D13BC400F20831 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15429D13BC400F20831 /* MapView.swift */; };
+		41C4F15829D13E7D00F20831 /* MapProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15729D13E7D00F20831 /* MapProvider.swift */; };
+		41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15929D16C0E00F20831 /* MapViewModel.swift */; };
+		41C4F15C29D16C9900F20831 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F15B29D16C9900F20831 /* Observable.swift */; };
+		41C4F16529D19D0200F20831 /* UIButton+init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C4F16429D19D0200F20831 /* UIButton+init.swift */; };
+		41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */; };
+		41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC8E29CF4D2C005DD915 /* Constant.swift */; };
+		41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4FC9029CF51C1005DD915 /* DrawingView.swift */; };
+		41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */; };
+		41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30C929CB313400DCE87A /* MainViewModel.swift */; };
+		41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DD30CB29CB3C9900DCE87A /* DefaultView.swift */; };
+		41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */; };
+		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F0E6D129F45677C6830F4F3 /* Pods-FindMyCar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.release.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.release.xcconfig"; sourceTree = "<group>"; };
+		414310D329CAE7730071795E /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		4143596E29CFE87500141137 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		416891C729A87EA600677202 /* FindMyCar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMyCar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		416891CA29A87EA600677202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		416891CC29A87EA600677202 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		416891CE29A87EA600677202 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		416891D129A87EA600677202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		416891CE29A87EA600677202 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		416891D329A87EA700677202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		416891D629A87EA700677202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		416891D829A87EA700677202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		416891D829A87EA700677202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = FindMyCar/Resource/Info.plist; sourceTree = SOURCE_ROOT; };
+		41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindMyCar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41C3E2CD29D2C02500224BA3 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		41C4F15429D13BC400F20831 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		41C4F15729D13E7D00F20831 /* MapProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProvider.swift; sourceTree = "<group>"; };
+		41C4F15929D16C0E00F20831 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		41C4F15B29D16C9900F20831 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		41C4F16429D19D0200F20831 /* UIButton+init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+init.swift"; sourceTree = "<group>"; };
+		41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		41D4FC8E29CF4D2C005DD915 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		41D4FC9029CF51C1005DD915 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
+		41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AssetColor.swift"; sourceTree = "<group>"; };
+		41DD30C929CB313400DCE87A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		41DD30CB29CB3C9900DCE87A /* DefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
+		41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AssetImage.swift"; sourceTree = "<group>"; };
+		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +63,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		414310CE29CAE63F0071795E /* InfraStructure */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15629D13E6800F20831 /* Map */,
+			);
+			path = InfraStructure;
+			sourceTree = "<group>";
+		};
 		416891BE29A87EA600677202 = {
 			isa = PBXGroup;
 			children = (
+				41CAAA9B29BCCD3800E83A83 /* .swiftlint.yml */,
 				416891C929A87EA600677202 /* FindMyCar */,
 				416891C829A87EA600677202 /* Products */,
+				46E6C53979A62B71FF69F99D /* Pods */,
+				C7FDEB990299B2C3266E9BF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +100,157 @@
 		416891C929A87EA600677202 /* FindMyCar */ = {
 			isa = PBXGroup;
 			children = (
-				416891CA29A87EA600677202 /* AppDelegate.swift */,
-				416891CC29A87EA600677202 /* SceneDelegate.swift */,
-				416891CE29A87EA600677202 /* ViewController.swift */,
-				416891D029A87EA600677202 /* Main.storyboard */,
+				41CAAA9D29BCCD5E00E83A83 /* Application */,
+				4184C77E29C7471900C53C00 /* Presentation */,
+				41C4F15D29D175F000F20831 /* Domain */,
+				414310CE29CAE63F0071795E /* InfraStructure */,
+				41C4F16129D18D5E00F20831 /* Resource */,
+			);
+			path = FindMyCar;
+			sourceTree = "<group>";
+		};
+		4184C77E29C7471900C53C00 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F16029D18CF700F20831 /* ViewScene */,
+				41DD30C529CB1FFA00DCE87A /* Utils */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		41C3E2CC29D2C01500224BA3 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				41C3E2CD29D2C02500224BA3 /* Alertable.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		41C4F15629D13E6800F20831 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15729D13E7D00F20831 /* MapProvider.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		41C4F15D29D175F000F20831 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15E29D175F800F20831 /* Model */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		41C4F15E29D175F800F20831 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				414310D329CAE7730071795E /* Location.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		41C4F15F29D18C7E00F20831 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
+				41C4F15429D13BC400F20831 /* MapView.swift */,
+				4143596E29CFE87500141137 /* PhotoView.swift */,
+				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		41C4F16029D18CF700F20831 /* ViewScene */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30C229CB0DFD00DCE87A /* MainView */,
+			);
+			path = ViewScene;
+			sourceTree = "<group>";
+		};
+		41C4F16129D18D5E00F20831 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
 				416891D329A87EA700677202 /* Assets.xcassets */,
 				416891D529A87EA700677202 /* LaunchScreen.storyboard */,
 				416891D829A87EA700677202 /* Info.plist */,
 			);
-			path = FindMyCar;
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		41CAAA9D29BCCD5E00E83A83 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				416891CA29A87EA600677202 /* AppDelegate.swift */,
+				416891CC29A87EA600677202 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		41DD30C229CB0DFD00DCE87A /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30C329CB0E0600DCE87A /* ViewModel */,
+				41DD30C429CB0E0E00DCE87A /* View */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		41DD30C329CB0E0600DCE87A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30C929CB313400DCE87A /* MainViewModel.swift */,
+				41C4F15929D16C0E00F20831 /* MapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		41DD30C429CB0E0E00DCE87A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				416891CE29A87EA600677202 /* MainViewController.swift */,
+				41C4F15F29D18C7E00F20831 /* MainView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41DD30C529CB1FFA00DCE87A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				41D4FC8E29CF4D2C005DD915 /* Constant.swift */,
+				41C4F15B29D16C9900F20831 /* Observable.swift */,
+				41C3E2CC29D2C01500224BA3 /* Protocol */,
+				41DD30C629CB208600DCE87A /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		41DD30C629CB208600DCE87A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30C729CB209400DCE87A /* UIColor+AssetColor.swift */,
+				41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */,
+				41C4F16429D19D0200F20831 /* UIButton+init.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		46E6C53979A62B71FF69F99D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */,
+				1F0E6D129F45677C6830F4F3 /* Pods-FindMyCar.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C7FDEB990299B2C3266E9BF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +260,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 416891DB29A87EA700677202 /* Build configuration list for PBXNativeTarget "FindMyCar" */;
 			buildPhases = (
+				2BFE92A5DD796E4B92D7F531 /* [CP] Check Pods Manifest.lock */,
+				41CAAA9A29BCCCE200E83A83 /* SwiftLint */,
 				416891C329A87EA600677202 /* Sources */,
 				416891C429A87EA600677202 /* Frameworks */,
 				416891C529A87EA600677202 /* Resources */,
@@ -125,36 +313,86 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41CAAA9C29BCCD3800E83A83 /* .swiftlint.yml in Resources */,
 				416891D729A87EA700677202 /* LaunchScreen.storyboard in Resources */,
 				416891D429A87EA700677202 /* Assets.xcassets in Resources */,
-				416891D229A87EA600677202 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BFE92A5DD796E4B92D7F531 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FindMyCar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41CAAA9A29BCCCE200E83A83 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		416891C329A87EA600677202 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				416891CF29A87EA600677202 /* ViewController.swift in Sources */,
+				41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */,
+				41C4F15C29D16C9900F20831 /* Observable.swift in Sources */,
+				41C4F15529D13BC400F20831 /* MapView.swift in Sources */,
+				41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */,
+				41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */,
+				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
+				41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */,
+				41C3E2CE29D2C02500224BA3 /* Alertable.swift in Sources */,
 				416891CB29A87EA600677202 /* AppDelegate.swift in Sources */,
+				4143596F29CFE87500141137 /* PhotoView.swift in Sources */,
+				41C4F15829D13E7D00F20831 /* MapProvider.swift in Sources */,
+				414310D429CAE7730071795E /* Location.swift in Sources */,
+				41DD30CC29CB3C9900DCE87A /* DefaultView.swift in Sources */,
+				41C4F15A29D16C0E00F20831 /* MapViewModel.swift in Sources */,
 				416891CD29A87EA600677202 /* SceneDelegate.swift in Sources */,
+				41DD30C829CB209400DCE87A /* UIColor+AssetColor.swift in Sources */,
+				41C4F16529D19D0200F20831 /* UIButton+init.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		416891D029A87EA600677202 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				416891D129A87EA600677202 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		416891D529A87EA700677202 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +454,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +509,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -282,6 +522,7 @@
 		};
 		416891DC29A87EA700677202 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -289,10 +530,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G9W4Z8U9JB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FindMyCar/Info.plist;
+				IBSC_FLATTEN_NIBS = YES;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -310,6 +552,7 @@
 		};
 		416891DD29A87EA700677202 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F0E6D129F45677C6830F4F3 /* Pods-FindMyCar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -317,10 +560,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = G9W4Z8U9JB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FindMyCar/Info.plist;
+				IBSC_FLATTEN_NIBS = YES;
+				INFOPLIST_FILE = FindMyCar/Resource/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

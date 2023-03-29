@@ -1,0 +1,9 @@
+excluded:
+    - FindMyCar/Application/AppDelegate.swift
+    - FindMyCar/Application/SceneDelegate.swift
+
+opt_in_rules:
+      # .count==0 보다는 .isEmpty를 사용하는 것
+      - empty_count
+      # 빈 String 문자열과 비교하는 것 보다는 .isEmpty를 사용하는 것
+      - empty_string
