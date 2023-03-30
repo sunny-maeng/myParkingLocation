@@ -31,11 +31,13 @@
 		41EB2AD229D43CE1003AC5B2 /* CoreDataLocationStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AD129D43CE1003AC5B2 /* CoreDataLocationStorage.swift */; };
 		41EB2AD429D4412C003AC5B2 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AD329D4412C003AC5B2 /* DataMapping.swift */; };
 		41EB2ADA29D47807003AC5B2 /* FetchLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AD929D47807003AC5B2 /* FetchLocationUseCase.swift */; };
-		41EB2ADE29D47940003AC5B2 /* DeleteLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2ADD29D47940003AC5B2 /* DeleteLocationUseCase.swift */; };
 		41EB2AE229D479BC003AC5B2 /* LocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AE129D479BC003AC5B2 /* LocationRepository.swift */; };
 		41EB2AE429D47A10003AC5B2 /* DefaultLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AE329D47A10003AC5B2 /* DefaultLocationRepository.swift */; };
 		41EB2AE629D47EC8003AC5B2 /* SaveLocationUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB2AE529D47EC7003AC5B2 /* SaveLocationUseCase.swift */; };
 		41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */; };
+		41F0C2BD29D507A7001A8D41 /* LocationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2BC29D507A7001A8D41 /* LocationType.swift */; };
+		41F0C2BF29D557C2001A8D41 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */; };
+		41F0C2C129D55AC4001A8D41 /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */; };
 		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,11 +70,13 @@
 		41EB2AD129D43CE1003AC5B2 /* CoreDataLocationStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataLocationStorage.swift; sourceTree = "<group>"; };
 		41EB2AD329D4412C003AC5B2 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		41EB2AD929D47807003AC5B2 /* FetchLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLocationUseCase.swift; sourceTree = "<group>"; };
-		41EB2ADD29D47940003AC5B2 /* DeleteLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLocationUseCase.swift; sourceTree = "<group>"; };
 		41EB2AE129D479BC003AC5B2 /* LocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRepository.swift; sourceTree = "<group>"; };
 		41EB2AE329D47A10003AC5B2 /* DefaultLocationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLocationRepository.swift; sourceTree = "<group>"; };
 		41EB2AE529D47EC7003AC5B2 /* SaveLocationUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveLocationUseCase.swift; sourceTree = "<group>"; };
 		41F0084C29D41D9E000298B4 /* UIImage+AssetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AssetImage.swift"; sourceTree = "<group>"; };
+		41F0C2BC29D507A7001A8D41 /* LocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationType.swift; sourceTree = "<group>"; };
+		41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +170,7 @@
 		41C4F15E29D175F800F20831 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				41F0C2BC29D507A7001A8D41 /* LocationType.swift */,
 				414310D329CAE7730071795E /* Location.swift */,
 			);
 			path = Model;
@@ -223,6 +228,8 @@
 			children = (
 				41DD30C929CB313400DCE87A /* MainViewModel.swift */,
 				41C4F15929D16C0E00F20831 /* MapViewModel.swift */,
+				41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */,
+				41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -282,7 +289,6 @@
 			children = (
 				41EB2AD929D47807003AC5B2 /* FetchLocationUseCase.swift */,
 				41EB2AE529D47EC7003AC5B2 /* SaveLocationUseCase.swift */,
-				41EB2ADD29D47940003AC5B2 /* DeleteLocationUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -439,12 +445,14 @@
 			files = (
 				41DD30CA29CB313400DCE87A /* MainViewModel.swift in Sources */,
 				41EB2ADA29D47807003AC5B2 /* FetchLocationUseCase.swift in Sources */,
-				41EB2ADE29D47940003AC5B2 /* DeleteLocationUseCase.swift in Sources */,
 				41EB2AD029D43C5C003AC5B2 /* CoreDataStorage.swift in Sources */,
 				41EB2AE429D47A10003AC5B2 /* DefaultLocationRepository.swift in Sources */,
 				41C4F15C29D16C9900F20831 /* Observable.swift in Sources */,
 				41C4F15529D13BC400F20831 /* MapView.swift in Sources */,
+				41F0C2BD29D507A7001A8D41 /* LocationType.swift in Sources */,
+				41F0C2C129D55AC4001A8D41 /* DrawingViewModel.swift in Sources */,
 				41EB2AE229D479BC003AC5B2 /* LocationRepository.swift in Sources */,
+				41F0C2BF29D557C2001A8D41 /* PhotoViewModel.swift in Sources */,
 				41EB2AD229D43CE1003AC5B2 /* CoreDataLocationStorage.swift in Sources */,
 				41F0084D29D41D9E000298B4 /* UIImage+AssetImage.swift in Sources */,
 				41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */,
