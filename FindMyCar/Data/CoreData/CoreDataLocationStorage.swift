@@ -12,7 +12,6 @@ protocol LocationStorage {
 
     func save(_ location: Location)
     func fetchLocation(completion: @escaping(Result<Location?, Error>) -> Void)
-    func deleteLocation()
 }
 
 final class CoreDataLocationStorage {
@@ -29,11 +28,11 @@ final class CoreDataLocationStorage {
 
 extension CoreDataLocationStorage: LocationStorage {
     func save(_ location: Location) {
+        deleteLocation()
         _ = dataMapping.domainToCoreDataLocationEntity(from: location, coreStorageContext: coreDataStorage.context)
 
         do {
             try coreDataStorage.context.save()
-
         } catch {
             print(error.localizedDescription)
         }
@@ -56,7 +55,7 @@ extension CoreDataLocationStorage: LocationStorage {
         }
     }
 
-    func deleteLocation() {
+    private func deleteLocation() {
         let request: NSFetchRequest<ParkingLocation> = NSFetchRequest(entityName: Constant.parkingLocationContainer)
 
         do {

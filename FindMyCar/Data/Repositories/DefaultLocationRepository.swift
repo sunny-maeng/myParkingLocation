@@ -27,8 +27,4 @@ extension DefaultLocationRepository: LocationRepository {
     func save(location: Location) {
         locationStorage.save(location)
     }
-
-    func deleteLocation() {
-        locationStorage.deleteLocation()
-    }
 }

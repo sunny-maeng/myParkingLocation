@@ -16,7 +16,9 @@ protocol PhotoViewDelegate: AnyObject {
 
 final class PhotoView: UIView {
 
-    var delegate: PhotoViewDelegate?
+    weak var delegate: PhotoViewDelegate?
+
+    private let viewModel: PhotoViewModel
 
     private lazy var imagePickerController: UIImagePickerController = {
         let imagePickerController = UIImagePickerController()

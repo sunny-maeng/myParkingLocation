@@ -15,7 +15,7 @@ protocol MapViewDelegate: AnyObject where Self: UIViewController {
 
 final class MapView: UIView {
 
-    var delegate: MapViewDelegate?
+    weak var delegate: MapViewDelegate?
 
     private let viewModel: MapViewModel
     private var mapProvider: MapProvider?
