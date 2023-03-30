@@ -10,15 +10,26 @@ import CoreData
 
 struct DataMapping {
 
-    func coreDataLocationEntityToDomain(from coreDataEntity: ParkingLocation) -> Location {
-        return .init(latitude: coreDataEntity.latitude,
-                     longitude: coreDataEntity.longitude,
-                     locationImage: coreDataEntity.imageData)
+    func coreDataLocationEntityToDomain(from coreDataEntity: ParkingLocation) -> Location? {
+        switch coreDataEntity.locationType {
+        case 0:
+            return Location(latitude: coreDataEntity.latitude, longitude: coreDataEntity.longitude)
+        default:
+           guard let locationType = LocationType.init(rawValue: Int(coreDataEntity.locationType)),
+                 let imageData = coreDataEntity.imageData,
+                 let location = Location(locationType: locationType, locationImage: imageData) else {
+               return nil
+           }
+               return location
+        }
     }
 
     func domainToCoreDataLocationEntity(from domain: Location,
                                         coreStorageContext: NSManagedObjectContext) -> ParkingLocation {
         let parkingLocationEntity = ParkingLocation(context: coreStorageContext)
+
+        let locationTypeValue = Int64(domain.locationType.rawValue)
+        parkingLocationEntity.locationType = locationTypeValue
 
         if let latitude = domain.latitude,
             let longitude = domain.longitude {
