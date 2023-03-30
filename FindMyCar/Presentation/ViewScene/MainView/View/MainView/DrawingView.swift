@@ -9,6 +9,7 @@ import UIKit
 
 final class DrawingView: UIView {
 
+    private let viewModel: DrawingViewModel
     private var lastPoint: CGPoint?
     private let lineSize: CGFloat = 10
     private let lineColor: CGColor = UIColor.label.cgColor
@@ -34,10 +35,21 @@ final class DrawingView: UIView {
 
     private var drawingImageViewDefaultImage: UIImage?
 
-    convenience init(defaultImage: String) {
-        self.init(frame: .zero)
+    init(viewModel: DrawingViewModel = DrawingViewModel(), drawingData: Data? = nil) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         self.setupView()
-        setupImageInDrawingView(imageName: defaultImage)
+        self.setupNotification()
+
+        if let drawingData = drawingData {
+            setupDrawing(drawingData)
+        } else {
+            setupDefaultImage(imageName: viewModel.defaultImage)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -100,10 +112,15 @@ extension DrawingView {
     }
 }
 
-// MARK: - setup image in DrawingImageView
+// MARK: - setup image
 extension DrawingView {
 
-    private func setupImageInDrawingView(imageName: String) {
+    private func setupDrawing(_ data: Data) {
+        let drawing = UIImage(data: data)
+        self.drawingImageView.image = drawing
+    }
+
+    private func setupDefaultImage(imageName: String) {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.writingViewDefaultImagePointSize,
                                                       weight: .medium)
         drawingImageViewDefaultImage = UIImage(systemName: imageName, withConfiguration: imageConfig)?
@@ -117,11 +134,27 @@ extension DrawingView {
 extension DrawingView {
 
     private func touchedUpClearButton() -> UIAction {
-        return UIAction { _ in self.removeImage() }
+        return UIAction { [weak self] _ in self?.removeImage() }
     }
 
     private func removeImage() {
         drawingImageView.image = nil
+    }
+}
+
+// MARK: - AutoSave Drawing
+extension DrawingView {
+
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(save),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+    }
+
+    @objc private func save() {
+        guard let data = drawingImageView.image?.pngData() else { return }
+        viewModel.saveDrawing(data)
     }
 }
 

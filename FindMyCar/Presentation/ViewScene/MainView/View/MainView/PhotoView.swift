@@ -41,10 +41,20 @@ final class PhotoView: UIView {
         return imageView
     }()
 
-    convenience init(defaultImage: String) {
-        self.init(frame: .zero)
+    init(viewModel: PhotoViewModel = PhotoViewModel(), photoData: Data? = nil) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         self.setupView()
-        setupImageInPhotoImageView(imageName: defaultImage)
+
+        if let photoData = photoData {
+            setupPhoto(photoData)
+        } else {
+            setupDefaultImage(imageName: viewModel.defaultImage)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func openCamera() {
@@ -87,6 +97,7 @@ extension PhotoView: UIImagePickerControllerDelegate, UINavigationControllerDele
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             self.photoImageView.image = image
             self.photoImageView.contentMode = .scaleAspectFill
+            self.save(photo: image)
         }
 
         picker.dismiss(animated: true, completion: nil)
@@ -100,13 +111,28 @@ extension PhotoView: UIImagePickerControllerDelegate, UINavigationControllerDele
 // MARK: - setup image in photoImageView
 extension PhotoView {
 
-    private func setupImageInPhotoImageView(imageName: String) {
+    private func setupPhoto(_ data: Data) {
+        let photo = UIImage(data: data)
+        self.photoImageView.image = photo
+        self.photoImageView.contentMode = .scaleAspectFill
+    }
+
+    private func setupDefaultImage(imageName: String) {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.photoViewDefaultImagePointSize,
                                                       weight: .medium)
         let photo = UIImage(systemName: imageName, withConfiguration: imageConfig)?
             .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
 
         photoImageView.image = photo
+    }
+}
+
+// MARK: - AutoSave Photo
+extension PhotoView {
+
+    private func save(photo: UIImage) {
+        guard let data = photo.pngData() else { return }
+        viewModel.savePhoto(data)
     }
 }
 

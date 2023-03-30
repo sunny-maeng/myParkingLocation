@@ -82,6 +82,37 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bindViewModel()
+        viewModel.fetchLocation()
+    }
+
+    private func bindViewModel() {
+        viewModel.error.bind { [weak self] errorDescription in
+            guard let self = self,
+                  let errorDescription = errorDescription else { return }
+            self.showAlert(title: self.viewModel.errorTitle, massage: errorDescription)
+        }
+
+        viewModel.savedLocation.bind { [weak self] location in
+            guard let self = self else { return }
+            guard let location = location else {
+                let defaultView = self.viewModel.generateDefaultView()
+                self.changeSubviewOfMainView(to: defaultView)
+                return
+            }
+
+            var mainView: UIView
+            switch location.locationType {
+            case .coordinate:
+                mainView = self.viewModel.generateMapView(location: location)
+            case .photo:
+                mainView = self.viewModel.generatePhotoView(data: location.locationImage)
+            case .drawing:
+                mainView = self.viewModel.generateDrawingView(data: location.locationImage)
+            }
+
+            self.changeSubviewOfMainView(to: mainView)
+        }
     }
 }
 
@@ -102,7 +133,7 @@ extension MainViewController {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
-            let photoView = PhotoView(defaultImage: self.viewModel.photoViewDefaultImage)
+            let photoView = self.viewModel.generatePhotoView()
             self.changeSubviewOfMainView(to: photoView)
             photoView.delegate = self
             photoView.openCamera()
@@ -113,7 +144,7 @@ extension MainViewController {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
-            let drawingView = DrawingView(defaultImage: self.viewModel.writingViewDefaultImage)
+            let drawingView = self.viewModel.generateDrawingView()
             self.changeSubviewOfMainView(to: drawingView)
         }
     }
@@ -122,7 +153,7 @@ extension MainViewController {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
-            let defaultView = DefaultView(title: self.viewModel.defaultTitle, defaultImage: self.viewModel.defaultImage)
+            let defaultView = self.viewModel.generateDefaultView()
             self.changeSubviewOfMainView(to: defaultView)
         }
     }

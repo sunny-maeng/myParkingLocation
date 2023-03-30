@@ -18,6 +18,8 @@ final class MapViewModel: NSObject {
     let defaultImageName: String = "map"
     let parkingAnnotationTitle: String = "CAR"
 
+    private let saveLocationUseCase: SaveLocationUseCase
+
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -26,9 +28,23 @@ final class MapViewModel: NSObject {
         return locationManager
     }()
 
-    override init() {
+    init(location: Location? = nil, saveLocationUseCase: SaveLocationUseCase = DefaultSaveLocationUseCase()) {
+        self.saveLocationUseCase = saveLocationUseCase
         super.init()
-        locationManager.requestLocation()
+
+        if let location = location {
+            self.setupLocation(location)
+        } else {
+            locationManager.requestLocation()
+        }
+    }
+
+    func setupLocation(_ location: Location) {
+        self.parkingLocation.value = location
+    }
+
+    private func saveLocation(_ location: Location) {
+        saveLocationUseCase.save(location: location)
     }
 }
 
@@ -51,8 +67,11 @@ extension MapViewModel: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locationCoordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+
+        let location = Location(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
         isLoading.value = false
-        parkingLocation.value = Location(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+        parkingLocation.value = location
+        saveLocation(location)
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

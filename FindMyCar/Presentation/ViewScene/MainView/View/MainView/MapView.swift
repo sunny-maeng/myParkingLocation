@@ -74,6 +74,7 @@ final class MapView: UIView {
         super.init(frame: .zero)
         bindViewModel()
         setupInitialView()
+        initialSetup()
     }
 
     required init?(coder: NSCoder) {
@@ -94,15 +95,23 @@ final class MapView: UIView {
             self?.delegate?.handleError(description: errorDescription)
         }
 
-        viewModel.isLoading.bind { isLoading in
+        viewModel.isLoading.bind { [weak self] isLoading in
             guard isLoading else { return }
-            self.setupLoadingView()
+            self?.setupLoadingView()
         }
 
         viewModel.isUserDeviceLocationServiceAuthorized.bind { [weak self] bool in
             guard let bool = bool, !bool else { return  }
             self?.delegate?.requestLocationAuthorization()
         }
+    }
+
+    private func initialSetup() {
+        guard let location = viewModel.parkingLocation.value,
+              let latitude = location.latitude,
+              let longitude = location.longitude else { return }
+        let delta = 0.001
+        self.generateMap(annotationLatitude: latitude, annotationLongitude: longitude, delta: delta)
     }
 
     private func generateMap(annotationLatitude: Double, annotationLongitude: Double, delta: Double) {
@@ -177,9 +186,10 @@ extension MapView {
         self.layoutIfNeeded()
 
         UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut, .autoreverse, .repeat]) {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1.0) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1.0) { [weak self] in
+                guard let self = self else { return }
                 self.pinImageView.center = .init(x: self.pinImageView.center.x,
-                                                 y: self.pinImageView.center.y - self.pinMovingDistance / 2)
+                                                  y: self.pinImageView.center.y - self.pinMovingDistance / 2)
             }
         }
     }
