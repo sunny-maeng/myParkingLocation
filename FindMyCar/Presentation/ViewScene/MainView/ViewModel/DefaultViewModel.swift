@@ -11,14 +11,4 @@ final class DefaultViewModel {
 
     let title: String = "주차위치를 기록해주세요"
     let image: String = "car"
-
-    private let deleteLocationUseCase: DeleteLocationUseCase
-
-    init(deleteLocationUseCase: DeleteLocationUseCase = DefaultDeleteLocationUseCase()) {
-        self.deleteLocationUseCase = deleteLocationUseCase
-    }
-
-    func deleteLocation() {
-        deleteLocationUseCase.deleteLocation()
-    }
 }

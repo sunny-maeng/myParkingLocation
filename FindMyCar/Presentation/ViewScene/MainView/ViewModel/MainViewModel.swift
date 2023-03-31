@@ -18,9 +18,13 @@ final class MainViewModel {
     let errorTitle: String = "Error"
 
     private let fetchLocationUseCase: FetchLocationUseCase
+    private let deleteLocationUseCase: DeleteLocationUseCase
 
-    init(fetchLocationUseCase: FetchLocationUseCase = DefaultFetchLocationUseCase()) {
+
+    init(fetchLocationUseCase: FetchLocationUseCase = DefaultFetchLocationUseCase(),
+         deleteLocationUseCase: DeleteLocationUseCase = DefaultDeleteLocationUseCase()) {
         self.fetchLocationUseCase = fetchLocationUseCase
+        self.deleteLocationUseCase = deleteLocationUseCase
     }
 
     // MARK: - GenerateView
@@ -53,5 +57,9 @@ extension MainViewModel {
                 self.error.value = "저장된 데이터를 가져오는 데 실패했습니다"
             }
         }
+    }
+
+    func deleteLocation() {
+        deleteLocationUseCase.deleteLocation()
     }
 }

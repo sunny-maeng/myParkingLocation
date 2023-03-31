@@ -47,7 +47,6 @@ final class DefaultView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         setupView()
-        viewModel.deleteLocation()
     }
 
     required init?(coder: NSCoder) {

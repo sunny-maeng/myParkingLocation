@@ -155,6 +155,7 @@ extension MainViewController {
 
             let defaultView = self.viewModel.generateDefaultView()
             self.changeSubviewOfMainView(to: defaultView)
+            self.viewModel.deleteLocation()
         }
     }
 }
