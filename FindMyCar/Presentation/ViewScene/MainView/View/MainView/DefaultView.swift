@@ -9,16 +9,21 @@ import UIKit
 
 final class DefaultView: UIView {
 
-    private let titleLabel: UILabel = {
+    let viewModel: DefaultViewModel
+
+    private lazy var titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.text = viewModel.title
         label.font = .preferredFont(forTextStyle: .title1)
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
     }()
 
-    private let defaultImageView: UIImageView = {
-        let imageView = UIImageView(frame: .zero)
+    private lazy var defaultImageView: UIImageView = {
+        let image = UIImage(systemName: viewModel.image)?
+            .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
+        let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.systemGray3.cgColor
         imageView.layer.borderWidth = Constant.borderWidth
@@ -38,20 +43,14 @@ final class DefaultView: UIView {
         return stack
     }()
 
-    convenience init(title: String, defaultImage: String) {
-        self.init(frame: .zero)
-        self.setupView()
-        self.setupDefaultImage(imageName: defaultImage)
-        self.setupTitle(text: title)
+    init(viewModel: DefaultViewModel = DefaultViewModel()) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+        setupView()
     }
 
-    private func setupDefaultImage(imageName: String) {
-        defaultImageView.image = UIImage(systemName: imageName)?
-            .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
-    }
-
-    private func setupTitle(text: String) {
-        titleLabel.text = text
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

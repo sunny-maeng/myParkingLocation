@@ -9,9 +9,11 @@ import UIKit
 
 final class DrawingView: UIView {
 
+    private let viewModel: DrawingViewModel
     private var lastPoint: CGPoint?
     private let lineSize: CGFloat = 10
     private let lineColor: CGColor = UIColor.label.cgColor
+    private var isShowingSavedDrawing: Bool = false
 
     private lazy var clearButton: UIButton = {
         let button = UIButton()
@@ -32,12 +34,25 @@ final class DrawingView: UIView {
         return imageView
     }()
 
-    private var drawingImageViewDefaultImage: UIImage?
+    private var defaultImage: UIImage?
 
-    convenience init(defaultImage: String) {
-        self.init(frame: .zero)
+    init(viewModel: DrawingViewModel = DrawingViewModel(), drawingData: Data? = nil) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
+
+        if let drawingData = drawingData {
+            setupDrawing(drawingData)
+            self.isShowingSavedDrawing = true
+        } else {
+            setupDefaultImage(imageName: viewModel.defaultImage)
+        }
+
         self.setupView()
-        setupImageInDrawingView(imageName: defaultImage)
+        self.setupNotification()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -45,9 +60,9 @@ final class DrawingView: UIView {
 extension DrawingView {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
+        guard let touch = touches.first, !isShowingSavedDrawing else { return }
 
-        if drawingImageView.image == drawingImageViewDefaultImage {
+        if drawingImageView.image == defaultImage {
             removeImage()
         }
 
@@ -58,7 +73,8 @@ extension DrawingView {
         UIGraphicsBeginImageContext(drawingImageView.frame.size)
 
         guard let touch = touches.first,
-              let context = UIGraphicsGetCurrentContext() else { return }
+              let context = UIGraphicsGetCurrentContext(),
+              !isShowingSavedDrawing else { return }
 
         let currentPoint = touch.location(in: drawingImageView)
         setupContext(on: context)
@@ -78,7 +94,7 @@ extension DrawingView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIGraphicsBeginImageContext(drawingImageView.frame.size)
 
-        guard let context = UIGraphicsGetCurrentContext() else { return }
+        guard let context = UIGraphicsGetCurrentContext(), !isShowingSavedDrawing else { return }
 
         setupContext(on: context)
         context.move(to: CGPoint(x: lastPoint?.x ?? .zero, y: lastPoint?.y ?? .zero))
@@ -100,16 +116,21 @@ extension DrawingView {
     }
 }
 
-// MARK: - setup image in DrawingImageView
+// MARK: - setup image
 extension DrawingView {
 
-    private func setupImageInDrawingView(imageName: String) {
+    private func setupDrawing(_ data: Data) {
+        let drawing = UIImage(data: data)
+        self.drawingImageView.image = drawing
+    }
+
+    private func setupDefaultImage(imageName: String) {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.writingViewDefaultImagePointSize,
                                                       weight: .medium)
-        drawingImageViewDefaultImage = UIImage(systemName: imageName, withConfiguration: imageConfig)?
+        defaultImage = UIImage(systemName: imageName, withConfiguration: imageConfig)?
             .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
 
-        drawingImageView.image = drawingImageViewDefaultImage
+        drawingImageView.image = defaultImage
     }
 }
 
@@ -117,11 +138,32 @@ extension DrawingView {
 extension DrawingView {
 
     private func touchedUpClearButton() -> UIAction {
-        return UIAction { _ in self.removeImage() }
+        return UIAction { [weak self] _ in self?.removeImage() }
     }
 
     private func removeImage() {
         drawingImageView.image = nil
+    }
+}
+
+// MARK: - AutoSave Drawing
+extension DrawingView {
+
+    private func setupNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(save),
+                                               name: UIApplication.didEnterBackgroundNotification,
+                                               object: nil)
+    }
+
+    @objc private func save() {
+        guard drawingImageView.image != defaultImage else {
+            viewModel.deleteDrawing()
+            return
+        }
+
+        guard let data = drawingImageView.image?.pngData() else { return }
+        viewModel.saveDrawing(data)
     }
 }
 
@@ -141,16 +183,21 @@ extension DrawingView {
     }
 
     private func configureHierarchy() {
-        [clearButton, drawingImageView].forEach { view in
-            self.addSubview(view)
+        if !isShowingSavedDrawing {
+            self.addSubview(clearButton)
         }
+        self.addSubview(drawingImageView)
     }
 
     private func configureLayout() {
-        NSLayoutConstraint.activate([
-            clearButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.stackSpacing),
-            clearButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.stackSpacing),
+        if !isShowingSavedDrawing {
+            NSLayoutConstraint.activate([
+                clearButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.stackSpacing),
+                clearButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.stackSpacing)
+            ])
+        }
 
+        NSLayoutConstraint.activate([
             drawingImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             drawingImageView.topAnchor.constraint(equalTo: self.topAnchor),
             drawingImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
