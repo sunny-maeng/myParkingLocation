@@ -11,4 +11,5 @@ protocol LocationRepository {
 
     func fetchLocation(completion: @escaping (Result<Location?, Error>) -> Void)
     func save(location: Location)
+    func deleteLocation()
 }

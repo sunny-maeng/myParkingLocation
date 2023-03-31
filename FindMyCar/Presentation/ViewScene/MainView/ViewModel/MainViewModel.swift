@@ -17,9 +17,6 @@ final class MainViewModel {
     let refreshButtonImage: String = "arrow.clockwise"
     let errorTitle: String = "Error"
 
-    private let defaultTitle: String = "주차위치를 기록해주세요"
-    private let defaultImage: String = "car"
-
     private let fetchLocationUseCase: FetchLocationUseCase
 
     init(fetchLocationUseCase: FetchLocationUseCase = DefaultFetchLocationUseCase()) {
@@ -28,7 +25,7 @@ final class MainViewModel {
 
     // MARK: - GenerateView
     func generateDefaultView() -> DefaultView {
-        return DefaultView(title: defaultTitle, defaultImage: defaultImage)
+        return DefaultView()
     }
 
     func generateMapView(location: Location) -> MapView {
