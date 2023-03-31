@@ -12,6 +12,7 @@ protocol PhotoViewDelegate: AnyObject {
 
     func requestCameraAuthorization()
     func openCamera(_ camera: UIImagePickerController)
+    func makeButtonInactive()
 }
 
 final class PhotoView: UIView {
@@ -98,6 +99,7 @@ extension PhotoView: UIImagePickerControllerDelegate, UINavigationControllerDele
             self.photoImageView.image = image
             self.photoImageView.contentMode = .scaleAspectFill
             self.save(photo: image)
+            self.delegate?.makeButtonInactive()
         }
 
         picker.dismiss(animated: true, completion: nil)

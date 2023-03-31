@@ -13,6 +13,7 @@ final class DrawingView: UIView {
     private var lastPoint: CGPoint?
     private let lineSize: CGFloat = 10
     private let lineColor: CGColor = UIColor.label.cgColor
+    private var isShowingSavedDrawing: Bool = false
 
     private lazy var clearButton: UIButton = {
         let button = UIButton()
@@ -38,14 +39,16 @@ final class DrawingView: UIView {
     init(viewModel: DrawingViewModel = DrawingViewModel(), drawingData: Data? = nil) {
         self.viewModel = viewModel
         super.init(frame: .zero)
-        self.setupView()
-        self.setupNotification()
 
         if let drawingData = drawingData {
             setupDrawing(drawingData)
+            self.isShowingSavedDrawing = true
         } else {
             setupDefaultImage(imageName: viewModel.defaultImage)
         }
+
+        self.setupView()
+        self.setupNotification()
     }
 
     required init?(coder: NSCoder) {
@@ -57,7 +60,7 @@ final class DrawingView: UIView {
 extension DrawingView {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
+        guard let touch = touches.first, !isShowingSavedDrawing else { return }
 
         if drawingImageView.image == defaultImage {
             removeImage()
@@ -70,7 +73,8 @@ extension DrawingView {
         UIGraphicsBeginImageContext(drawingImageView.frame.size)
 
         guard let touch = touches.first,
-              let context = UIGraphicsGetCurrentContext() else { return }
+              let context = UIGraphicsGetCurrentContext(),
+              !isShowingSavedDrawing else { return }
 
         let currentPoint = touch.location(in: drawingImageView)
         setupContext(on: context)
@@ -90,7 +94,7 @@ extension DrawingView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIGraphicsBeginImageContext(drawingImageView.frame.size)
 
-        guard let context = UIGraphicsGetCurrentContext() else { return }
+        guard let context = UIGraphicsGetCurrentContext(), !isShowingSavedDrawing else { return }
 
         setupContext(on: context)
         context.move(to: CGPoint(x: lastPoint?.x ?? .zero, y: lastPoint?.y ?? .zero))
@@ -157,7 +161,7 @@ extension DrawingView {
             viewModel.deleteDrawing()
             return
         }
-        
+
         guard let data = drawingImageView.image?.pngData() else { return }
         viewModel.saveDrawing(data)
     }
@@ -179,16 +183,21 @@ extension DrawingView {
     }
 
     private func configureHierarchy() {
-        [clearButton, drawingImageView].forEach { view in
-            self.addSubview(view)
+        if !isShowingSavedDrawing {
+            self.addSubview(clearButton)
         }
+        self.addSubview(drawingImageView)
     }
 
     private func configureLayout() {
-        NSLayoutConstraint.activate([
-            clearButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.stackSpacing),
-            clearButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.stackSpacing),
+        if !isShowingSavedDrawing {
+            NSLayoutConstraint.activate([
+                clearButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constant.stackSpacing),
+                clearButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constant.stackSpacing)
+            ])
+        }
 
+        NSLayoutConstraint.activate([
             drawingImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             drawingImageView.topAnchor.constraint(equalTo: self.topAnchor),
             drawingImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),

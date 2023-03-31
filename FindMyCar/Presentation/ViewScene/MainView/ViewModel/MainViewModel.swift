@@ -14,12 +14,11 @@ final class MainViewModel {
     let positioningButtonImage: String = "flag"
     let cameraButtonImage: String = "camera"
     let pencilButtonImage: String = "pencil"
-    let refreshButtonImage: String = "arrow.clockwise"
+    let resetButtonImage: String = "arrow.clockwise"
     let errorTitle: String = "Error"
 
     private let fetchLocationUseCase: FetchLocationUseCase
     private let deleteLocationUseCase: DeleteLocationUseCase
-
 
     init(fetchLocationUseCase: FetchLocationUseCase = DefaultFetchLocationUseCase(),
          deleteLocationUseCase: DeleteLocationUseCase = DefaultDeleteLocationUseCase()) {

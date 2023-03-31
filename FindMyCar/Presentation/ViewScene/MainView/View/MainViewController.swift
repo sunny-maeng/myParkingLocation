@@ -51,10 +51,10 @@ class MainViewController: UIViewController {
 
     private lazy var resetButton: UIButton = {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.buttonImagePointSize - 10, weight: .bold)
-        let buttonImage: UIImage? = UIImage(systemName: viewModel.refreshButtonImage, withConfiguration: imageConfig)
+        let buttonImage: UIImage? = UIImage(systemName: viewModel.resetButtonImage, withConfiguration: imageConfig)
         let button: UIButton = UIButton(imageConfig: imageConfig, image: buttonImage)
-        button.backgroundColor = .systemGray
-        button.addAction(touchedUpRefreshButton(), for: .touchUpInside)
+        button.backgroundColor = .systemGray3
+        button.addAction(touchedUpResetButton(), for: .touchUpInside)
 
         return button
     }()
@@ -112,6 +112,7 @@ class MainViewController: UIViewController {
             }
 
             self.changeSubviewOfMainView(to: mainView)
+            self.makeButtonInactive()
         }
     }
 }
@@ -149,13 +150,14 @@ extension MainViewController {
         }
     }
 
-    private func touchedUpRefreshButton() -> UIAction {
+    private func touchedUpResetButton() -> UIAction {
         return UIAction { [weak self] _ in
             guard let self = self else { return }
 
             let defaultView = self.viewModel.generateDefaultView()
             self.changeSubviewOfMainView(to: defaultView)
             self.viewModel.deleteLocation()
+            self.makeButtonActive()
         }
     }
 
@@ -187,6 +189,22 @@ extension MainViewController {
             subView.trailingAnchor.constraint(equalTo: mainView.trailingAnchor),
             subView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor)
         ])
+    }
+}
+
+// MARK: - Button Enable
+extension MainViewController {
+
+    internal func makeButtonInactive() {
+        let locationButtons = [positioningButton, cameraButton, drawingButton]
+        locationButtons.forEach { $0.isEnabled = false }
+        resetButton.backgroundColor = .systemRed
+    }
+
+    private func makeButtonActive() {
+        let locationButtons = [positioningButton, cameraButton, drawingButton]
+        locationButtons.forEach { $0.isEnabled = true }
+        resetButton.backgroundColor = .systemGray3
     }
 }
 
