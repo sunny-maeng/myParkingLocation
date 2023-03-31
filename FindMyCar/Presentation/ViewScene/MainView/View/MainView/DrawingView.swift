@@ -33,7 +33,7 @@ final class DrawingView: UIView {
         return imageView
     }()
 
-    private var drawingImageViewDefaultImage: UIImage?
+    private var defaultImage: UIImage?
 
     init(viewModel: DrawingViewModel = DrawingViewModel(), drawingData: Data? = nil) {
         self.viewModel = viewModel
@@ -59,7 +59,7 @@ extension DrawingView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
 
-        if drawingImageView.image == drawingImageViewDefaultImage {
+        if drawingImageView.image == defaultImage {
             removeImage()
         }
 
@@ -123,10 +123,10 @@ extension DrawingView {
     private func setupDefaultImage(imageName: String) {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: Constant.writingViewDefaultImagePointSize,
                                                       weight: .medium)
-        drawingImageViewDefaultImage = UIImage(systemName: imageName, withConfiguration: imageConfig)?
+        defaultImage = UIImage(systemName: imageName, withConfiguration: imageConfig)?
             .withTintColor(.systemGray3, renderingMode: .alwaysOriginal)
 
-        drawingImageView.image = drawingImageViewDefaultImage
+        drawingImageView.image = defaultImage
     }
 }
 
@@ -153,6 +153,11 @@ extension DrawingView {
     }
 
     @objc private func save() {
+        guard drawingImageView.image != defaultImage else {
+            viewModel.deleteDrawing()
+            return
+        }
+        
         guard let data = drawingImageView.image?.pngData() else { return }
         viewModel.saveDrawing(data)
     }

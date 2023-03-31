@@ -158,6 +158,11 @@ extension MainViewController {
             self.viewModel.deleteLocation()
         }
     }
+
+    private func disableButtons(except: UIButton) {
+        let allButtons = [positioningButton, cameraButton, drawingButton].filter { $0 != except }
+        allButtons.forEach { $0.isEnabled = true }
+    }
 }
 
 // MARK: - MainView Change
