@@ -10,13 +10,13 @@ import CoreData
 
 struct DataMapping {
 
-    func coreDataLocationEntityToDomain(from coreDataEntity: ParkingLocation) -> Location? {
-        switch coreDataEntity.locationType {
+    func coreDataLocationEntityToDomain(from entity: ParkingLocation) -> Location? {
+        switch entity.locationType {
         case 0:
-            return Location(latitude: coreDataEntity.latitude, longitude: coreDataEntity.longitude)
+            return Location(latitude: entity.latitude, longitude: entity.longitude, locationImage: entity.imageData)
         default:
-           guard let locationType = LocationType.init(rawValue: Int(coreDataEntity.locationType)),
-                 let imageData = coreDataEntity.imageData,
+           guard let locationType = LocationType.init(rawValue: Int(entity.locationType)),
+                 let imageData = entity.imageData,
                  let location = Location(locationType: locationType, locationImage: imageData) else {
                return nil
            }
@@ -26,19 +26,21 @@ struct DataMapping {
 
     func domainToCoreDataLocationEntity(from domain: Location,
                                         coreStorageContext: NSManagedObjectContext) -> ParkingLocation {
-        let parkingLocationEntity = ParkingLocation(context: coreStorageContext)
+        let entity = ParkingLocation(context: coreStorageContext)
 
         let locationTypeValue = Int64(domain.locationType.rawValue)
-        parkingLocationEntity.locationType = locationTypeValue
+        entity.locationType = locationTypeValue
 
-        if let latitude = domain.latitude,
-            let longitude = domain.longitude {
-            parkingLocationEntity.latitude = latitude
-            parkingLocationEntity.longitude = longitude
-        } else if let imageData = domain.locationImage {
-            parkingLocationEntity.imageData = imageData
+        if let imageData = domain.locationImage {
+            entity.imageData = imageData
         }
 
-        return parkingLocationEntity
+        if let latitude = domain.latitude,
+           let longitude = domain.longitude {
+            entity.latitude = latitude
+            entity.longitude = longitude
+        }
+
+        return entity
     }
 }

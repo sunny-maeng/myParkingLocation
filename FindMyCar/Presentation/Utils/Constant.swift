@@ -9,6 +9,8 @@ import Foundation
 
 enum Constant {
 
+    static let mapDelta: Double = 0.001
+    static let snapShotSize: CGSize = CGSize(width: 300, height: 300)
     static let cornerRadius: CGFloat = 10
     static let stackSpacing: CGFloat = 20
     static let borderWidth: CGFloat = 2

@@ -40,6 +40,7 @@
 		41F0C2BD29D507A7001A8D41 /* LocationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2BC29D507A7001A8D41 /* LocationType.swift */; };
 		41F0C2BF29D557C2001A8D41 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */; };
 		41F0C2C129D55AC4001A8D41 /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */; };
+		41F60E2E29D7B1DA001A5A80 /* MapSnapshotProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F60E2D29D7B1DA001A5A80 /* MapSnapshotProvider.swift */; };
 		C23547E1E607195A9F5FBF82 /* Pods_FindMyCar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BDEB8D52AC211832DD38D2 /* Pods_FindMyCar.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,7 @@
 		41F0C2BC29D507A7001A8D41 /* LocationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationType.swift; sourceTree = "<group>"; };
 		41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
+		41F60E2D29D7B1DA001A5A80 /* MapSnapshotProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSnapshotProvider.swift; sourceTree = "<group>"; };
 		C336F5CAF5CE7A1BFFABDE2F /* Pods-FindMyCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMyCar.debug.xcconfig"; path = "Target Support Files/Pods-FindMyCar/Pods-FindMyCar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,14 +98,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		414310CE29CAE63F0071795E /* InfraStructure */ = {
-			isa = PBXGroup;
-			children = (
-				41C4F15629D13E6800F20831 /* Map */,
-			);
-			path = InfraStructure;
-			sourceTree = "<group>";
-		};
 		416891BE29A87EA600677202 = {
 			isa = PBXGroup;
 			children = (
@@ -130,7 +124,6 @@
 				4184C77E29C7471900C53C00 /* Presentation */,
 				41C4F15D29D175F000F20831 /* Domain */,
 				41EB2AC929D43BBC003AC5B2 /* Data */,
-				414310CE29CAE63F0071795E /* InfraStructure */,
 				41C4F16129D18D5E00F20831 /* Resource */,
 			);
 			path = FindMyCar;
@@ -153,14 +146,6 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
-		41C4F15629D13E6800F20831 /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				41C4F15729D13E7D00F20831 /* MapProvider.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
 		41C4F15D29D175F000F20831 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,21 +165,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		41C4F15F29D18C7E00F20831 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				41C4F15429D13BC400F20831 /* MapView.swift */,
-				4143596E29CFE87500141137 /* PhotoView.swift */,
-				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
-				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
 		41C4F16029D18CF700F20831 /* ViewScene */ = {
 			isa = PBXGroup;
 			children = (
 				41DD30C229CB0DFD00DCE87A /* MainView */,
+				41F60E2129D7B0BE001A5A80 /* MapView */,
+				41F60E2429D7B0DB001A5A80 /* PhotoView */,
+				41F60E2729D7B0FA001A5A80 /* DrawingView */,
+				41F60E2A29D7B130001A5A80 /* DefaultView */,
 			);
 			path = ViewScene;
 			sourceTree = "<group>";
@@ -231,10 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				41DD30C929CB313400DCE87A /* MainViewModel.swift */,
-				41C4F15929D16C0E00F20831 /* MapViewModel.swift */,
-				41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */,
-				41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */,
-				4198D35729D6D1F000F1B03A /* DefaultViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -243,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				416891CE29A87EA600677202 /* MainViewController.swift */,
-				41C4F15F29D18C7E00F20831 /* MainView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +286,108 @@
 				41EB2AE129D479BC003AC5B2 /* LocationRepository.swift */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		41F60E2129D7B0BE001A5A80 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				41F60E2229D7B0C6001A5A80 /* ViewModel */,
+				41F60E2329D7B0CD001A5A80 /* View */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		41F60E2229D7B0C6001A5A80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15929D16C0E00F20831 /* MapViewModel.swift */,
+				41F60E2D29D7B1DA001A5A80 /* MapSnapshotProvider.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		41F60E2329D7B0CD001A5A80 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41C4F15429D13BC400F20831 /* MapView.swift */,
+				41C4F15729D13E7D00F20831 /* MapProvider.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41F60E2429D7B0DB001A5A80 /* PhotoView */ = {
+			isa = PBXGroup;
+			children = (
+				41F60E2529D7B0E5001A5A80 /* ViewModel */,
+				41F60E2629D7B0EE001A5A80 /* View */,
+			);
+			path = PhotoView;
+			sourceTree = "<group>";
+		};
+		41F60E2529D7B0E5001A5A80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41F0C2BE29D557C2001A8D41 /* PhotoViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		41F60E2629D7B0EE001A5A80 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4143596E29CFE87500141137 /* PhotoView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41F60E2729D7B0FA001A5A80 /* DrawingView */ = {
+			isa = PBXGroup;
+			children = (
+				41F60E2929D7B113001A5A80 /* ViewModel */,
+				41F60E2829D7B102001A5A80 /* View */,
+			);
+			path = DrawingView;
+			sourceTree = "<group>";
+		};
+		41F60E2829D7B102001A5A80 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41D4FC9029CF51C1005DD915 /* DrawingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		41F60E2929D7B113001A5A80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				41F0C2C029D55AC4001A8D41 /* DrawingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		41F60E2A29D7B130001A5A80 /* DefaultView */ = {
+			isa = PBXGroup;
+			children = (
+				41F60E2B29D7B148001A5A80 /* ViewModel */,
+				41F60E2C29D7B14D001A5A80 /* View */,
+			);
+			path = DefaultView;
+			sourceTree = "<group>";
+		};
+		41F60E2B29D7B148001A5A80 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4198D35729D6D1F000F1B03A /* DefaultViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		41F60E2C29D7B14D001A5A80 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41DD30CB29CB3C9900DCE87A /* DefaultView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		46E6C53979A62B71FF69F99D /* Pods */ = {
@@ -465,6 +540,7 @@
 				41D4FC8F29CF4D2C005DD915 /* Constant.swift in Sources */,
 				416891CF29A87EA600677202 /* MainViewController.swift in Sources */,
 				4198D35629D6D13300F1B03A /* DeleteLocationUseCase.swift in Sources */,
+				41F60E2E29D7B1DA001A5A80 /* MapSnapshotProvider.swift in Sources */,
 				41D4FC9129CF51C1005DD915 /* DrawingView.swift in Sources */,
 				41EB2AE629D47EC8003AC5B2 /* SaveLocationUseCase.swift in Sources */,
 				41EB2AD429D4412C003AC5B2 /* DataMapping.swift in Sources */,

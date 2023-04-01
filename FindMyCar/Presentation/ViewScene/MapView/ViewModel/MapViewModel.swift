@@ -19,6 +19,7 @@ final class MapViewModel: NSObject {
     let parkingAnnotationTitle: String = "CAR"
 
     private let saveLocationUseCase: SaveLocationUseCase
+    private let mapSnapshotProvider: MapSnapshotProvider
 
     private lazy var locationManager: CLLocationManager = {
         let locationManager = CLLocationManager()
@@ -28,8 +29,11 @@ final class MapViewModel: NSObject {
         return locationManager
     }()
 
-    init(location: Location? = nil, saveLocationUseCase: SaveLocationUseCase = DefaultSaveLocationUseCase()) {
+    init(location: Location? = nil,
+         saveLocationUseCase: SaveLocationUseCase = DefaultSaveLocationUseCase(),
+         mapSnapshotProvider: MapSnapshotProvider = DefaultMapSnapshotProvider()) {
         self.saveLocationUseCase = saveLocationUseCase
+        self.mapSnapshotProvider = mapSnapshotProvider
         super.init()
 
         if let location = location {
@@ -45,6 +49,22 @@ final class MapViewModel: NSObject {
 
     private func saveLocation(_ location: Location) {
         saveLocationUseCase.save(location: location)
+    }
+
+    private func snapShotMap(latitude: Double, longitude: Double, completion: @escaping (Data?) -> Void) {
+        let del = Constant.mapDelta
+        let size = Constant.snapShotSize
+
+        mapSnapshotProvider
+            .snapShotMap(latitude: latitude, longitude: longitude, delta: del, imageSize: size) { [weak self] result in
+            switch result {
+            case .success(let data):
+                completion(data)
+            case .failure:
+                completion(nil)
+                self?.error.value = "위젯에 사용할 지도 사진 저장에 실패했습니다."
+            }
+        }
     }
 }
 
@@ -67,11 +87,17 @@ extension MapViewModel: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locationCoordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        let latitude = locationCoordinate.latitude
+        let longitude = locationCoordinate.longitude
+        var location: Location = Location(latitude: latitude, longitude: longitude)
 
-        let location = Location(latitude: locationCoordinate.latitude, longitude: locationCoordinate.longitude)
+        self.snapShotMap(latitude: latitude, longitude: longitude) { [weak self] data in
+            location = Location(latitude: latitude, longitude: longitude, locationImage: data)
+            self?.saveLocation(location)
+        }
+
         isLoading.value = false
         parkingLocation.value = location
-        saveLocation(location)
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

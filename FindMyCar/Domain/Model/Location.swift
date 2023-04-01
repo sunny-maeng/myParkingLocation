@@ -14,11 +14,11 @@ struct Location {
     let longitude: Double?
     let locationImage: Data?
 
-    init(latitude: Double, longitude: Double) {
+    init(latitude: Double, longitude: Double, locationImage: Data? = nil) {
         self.locationType = .coordinate
         self.latitude = latitude
         self.longitude = longitude
-        self.locationImage = nil
+        self.locationImage = locationImage
     }
 
     init?(locationType: LocationType, locationImage: Data) {
