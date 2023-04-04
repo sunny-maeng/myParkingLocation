@@ -1,6 +1,6 @@
 excluded:
-    - FindMyCar/Application/AppDelegate.swift
-    - FindMyCar/Application/SceneDelegate.swift
+    - MyParkingLocation/Application/AppDelegate.swift
+    - MyParkingLocation/Application/SceneDelegate.swift
 
 opt_in_rules:
       # .count==0 보다는 .isEmpty를 사용하는 것
