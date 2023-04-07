@@ -630,6 +630,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_FLATTEN_NIBS = YES;
 				INFOPLIST_FILE = MyParkingLocation/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "내 주차 위치";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "주차 위치 촬영을 위한 카메라 접근권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주차 위치 저장을 위한 위치 권한이 필요합니다.";
@@ -671,6 +672,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_FLATTEN_NIBS = YES;
 				INFOPLIST_FILE = MyParkingLocation/Resource/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "내 주차 위치";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSCameraUsageDescription = "주차 위치 촬영을 위한 카메라 접근권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "주차 위치 저장을 위한 위치 권한이 필요합니다.";
